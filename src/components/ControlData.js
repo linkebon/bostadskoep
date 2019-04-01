@@ -7,7 +7,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
-const ControlData = ({classes, downPayment}) => {
+const ControlData = ({classes, suggestedDownPayment, minimumDownPayment, moneySavedUntilPurchase, loanAmount, loanQuota, maxLoanAmontFromBank}) => {
     return (
         <div>
             <h4>Beräknade värden</h4>
@@ -16,16 +16,57 @@ const ControlData = ({classes, downPayment}) => {
                     <TableHead>
                         <TableRow>
                             <TableCell>Beräknade köp värden</TableCell>
-                            <TableCell align="left">kr</TableCell>
+                            <TableCell></TableCell>
+                            {/*<TableCell align="left">kr</TableCell>*/}
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         <TableRow>
                             <TableCell>
-                                Kontantinsats
+                                Beräknad möjlig kontantinsats
                             </TableCell>
                             <TableCell>
-                                {downPayment}
+                                {suggestedDownPayment} kr
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell>
+                                Minsta möjliga kontantinsats (15% av köpesumma)
+                            </TableCell>
+                            <TableCell>
+                                {minimumDownPayment} kr
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell>
+                                Pengar sparade tills köp
+                            </TableCell>
+                            <TableCell>
+                                {moneySavedUntilPurchase} kr
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell>
+                                Lånesumma
+                            </TableCell>
+                            <TableCell>
+                                {loanAmount} kr
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell>
+                                Lånekvot
+                            </TableCell>
+                            <TableCell>
+                                {loanQuota} %
+                            </TableCell>
+                        </TableRow>
+                        <TableRow style={{backgroundColor: loanAmount > maxLoanAmontFromBank ? 'red' : ''}}>
+                            <TableCell>
+                                Maxutlåning från bank 4,5 gånger årsinkomst
+                            </TableCell>
+                            <TableCell>
+                                {maxLoanAmontFromBank}
                             </TableCell>
                         </TableRow>
                     </TableBody>

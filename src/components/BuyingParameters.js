@@ -107,6 +107,16 @@ const BuyingParameters = ({classes, state, handleChange, handleNumberChange}) =>
                 onChange={handleNumberChange("profitOnSale")}
                 type="number"
             />
+            <TextField
+                id="householdIncomeId"
+                label="Hushållets totala inkomster (kr)"
+                className={classes.textField}
+                margin="normal"
+                required={true}
+                value={state.householdIncome}
+                onChange={handleNumberChange("householdIncome")}
+                type="number"
+            />
         </form>
     )
 };
