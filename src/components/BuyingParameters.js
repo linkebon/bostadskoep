@@ -63,43 +63,6 @@ const BuyingParameters = ({classes, state, handleChange, handleNumberChange}) =>
                     onChange={handleNumberChange("moneyLeftAfterPurchase")}
                     type="number"
                 />
-
-                <TextField
-                    id="interestId"
-                    label="Ränta lån (%)"
-                    className={classes.textField}
-                    margin="normal"
-                    required={true}
-                    value={state.interest}
-                    onChange={handleNumberChange("interest")}
-                    type="number"
-                />
-
-                <TextField
-                    id="maxLeverageId"
-                    label="Max lånekvot (%)"
-                    className={classes.textField}
-                    margin="normal"
-                    required={true}
-                    value={state.maxLeverageLevel}
-                    onChange={handleNumberChange("maxLeverageLevel")}
-                    type="number"
-                />
-
-                <TextField
-                    id="pantbrev"
-                    label="Pantbrev"
-                    className={classes.textField}
-                    value={state.pantBrev}
-                    onChange={handleChange("pantBrev")}
-                    margin="normal"
-                    required={true}
-                    select={true}>
-
-                    <MenuItem key="yes" value={true}>Ja</MenuItem>
-                    <MenuItem key="no" value={false}>Nej</MenuItem>
-                </TextField>
-
                 <TextField
                     id="profitOnSale"
                     label="Vinst på försäljning (kr)"
@@ -118,6 +81,40 @@ const BuyingParameters = ({classes, state, handleChange, handleNumberChange}) =>
                     required={true}
                     value={state.householdIncome}
                     onChange={handleNumberChange("householdIncome")}
+                    type="number"
+                />
+
+                <TextField
+                    id="pantbrev"
+                    label="Pantbrev"
+                    className={classes.textField}
+                    value={state.pantBrev}
+                    onChange={handleChange("pantBrev")}
+                    margin="normal"
+                    required={true}
+                    select={true}>
+
+                    <MenuItem key="yes" value={true}>Ja</MenuItem>
+                    <MenuItem key="no" value={false}>Nej</MenuItem>
+                </TextField>
+
+                <TextField
+                    id="interestId"
+                    label="Ränta lån (%)"
+                    className={classes.textField}
+                    margin="normal"
+                    value={state.interest}
+                    onChange={handleNumberChange("interest")}
+                    type="number"
+                />
+
+                <TextField
+                    id="maxLeverageId"
+                    label="Max lånekvot (%)"
+                    className={classes.textField}
+                    margin="normal"
+                    value={state.maxLeverageLevel}
+                    onChange={handleNumberChange("maxLeverageLevel")}
                     type="number"
                 />
             </form>

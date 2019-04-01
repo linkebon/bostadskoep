@@ -5,31 +5,18 @@ import * as CalculatorUtil from "../functions/CalculatorUtil";
 import OneTimeCosts from "../components/OneTimeCosts";
 
 class CalculateContainer extends Component {
-        state = {
-            pantBrev: false,
-            purchaseAmount: "",
-            savingsPerMonth: "",
-            savingsMonths: "",
-            cash: "",
-            moneyLeftAfterPurchase: "",
-            maxLeverageLevel: "",
-            interest: "",
-            profitOnSale: "",
-            householdIncome: ""
-        };
-
-/*    state = {
+    state = {
         pantBrev: false,
-        purchaseAmount: 1000,
-        savingsPerMonth: 10,
-        savingsMonths: 5,
-        cash: 100,
-        moneyLeftAfterPurchase: 10,
-        maxLeverageLevel: 0,
-        interest: 0,
-        profitOnSale: 100,
-        householdIncome: 10
-    };*/
+        purchaseAmount: "",
+        savingsPerMonth: "",
+        savingsMonths: "",
+        cash: "",
+        moneyLeftAfterPurchase: "",
+        maxLeverageLevel: "",
+        interest: "",
+        profitOnSale: "",
+        householdIncome: ""
+    };
 
     handleNumberChange = name => event => {
         this.setState({[name]: Number(event.target.value)});
@@ -58,7 +45,7 @@ class CalculateContainer extends Component {
                     maxLoanAmontFromBank={CalculatorUtil.calculateMaxLoanFromBankFourPointFive(this.state.householdIncome)}
                 />
                 <OneTimeCosts
-                    pantBrevCost={CalculatorUtil.calculatePantBrevCost(this.state.purchaseAmount)}
+                    pantBrevCost={this.state.pantBrev ? CalculatorUtil.calculatePantBrevCost(this.state.purchaseAmount) : 0}
                     lagfartCost={CalculatorUtil.calculateLagfartCost(this.state.purchaseAmount)}
                 />
             </div>
