@@ -10,12 +10,11 @@ import Paper from '@material-ui/core/Paper';
 const ControlData = ({classes, suggestedDownPayment, minimumDownPayment, moneySavedUntilPurchase, loanAmount, loanQuota, maxLoanAmontFromBank}) => {
     return (
         <div>
-            <h4>Beräknade värden</h4>
             <Paper className={classes.root}>
                 <Table className={classes.table}>
                     <TableHead>
                         <TableRow>
-                            <TableCell>Beräknade köp värden</TableCell>
+                            <TableCell>Beräknade värden</TableCell>
                             <TableCell></TableCell>
                             {/*<TableCell align="left">kr</TableCell>*/}
                         </TableRow>

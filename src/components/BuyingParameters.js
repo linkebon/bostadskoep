@@ -2,126 +2,139 @@ import React from 'react';
 import {withStyles} from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from "@material-ui/core/MenuItem";
+import Paper from '@material-ui/core/Paper';
 
 const BuyingParameters = ({classes, state, handleChange, handleNumberChange}) => {
     return (
-        <form className={classes.container} noValidate autoComplete="off">
-            <TextField
-                id="purchaseAmountId"
-                label="Köpesumma (kr)"
-                className={classes.textField}
-                value={state.purchaseAmount}
-                onChange={handleNumberChange("purchaseAmount")}
-                margin="normal"
-                required={true}
-                type="number"
-            />
+        <Paper className={classes.root}>
+            <p className={classes.p}>Parametrar för köp</p>
+            <form className={classes.container} noValidate autoComplete="off">
+                <TextField
+                    id="purchaseAmountId"
+                    label="Köpesumma (kr)"
+                    className={classes.textField}
+                    value={state.purchaseAmount}
+                    onChange={handleNumberChange("purchaseAmount")}
+                    margin="normal"
+                    required={true}
+                    type="number"
+                />
 
-            <TextField
-                id="cashId"
-                label="Likvider (kr)"
-                className={classes.textField}
-                value={state.cash}
-                onChange={handleNumberChange("cash")}
-                margin="normal"
-                required={true}
-                type="number"
-            />
+                <TextField
+                    id="cashId"
+                    label="Likvider (kr)"
+                    className={classes.textField}
+                    value={state.cash}
+                    onChange={handleNumberChange("cash")}
+                    margin="normal"
+                    required={true}
+                    type="number"
+                />
 
-            <TextField
-                id="savingsPerMonthId"
-                label="Sparande per månad (kr)"
-                className={classes.textField}
-                margin="normal"
-                required={true}
-                value={state.savingsPerMonth}
-                onChange={handleNumberChange("savingsPerMonth")}
-                type="number"
-            />
+                <TextField
+                    id="savingsPerMonthId"
+                    label="Sparande per månad (kr)"
+                    className={classes.textField}
+                    margin="normal"
+                    required={true}
+                    value={state.savingsPerMonth}
+                    onChange={handleNumberChange("savingsPerMonth")}
+                    type="number"
+                />
 
-            <TextField
-                id="savingsMonthsId"
-                label="Antal månader"
-                className={classes.textField}
-                margin="normal"
-                required={true}
-                value={state.savingsMonths}
-                onChange={handleNumberChange("savingsMonths")}
-                type="number"
-            />
+                <TextField
+                    id="savingsMonthsId"
+                    label="Antal månader"
+                    className={classes.textField}
+                    margin="normal"
+                    required={true}
+                    value={state.savingsMonths}
+                    onChange={handleNumberChange("savingsMonths")}
+                    type="number"
+                />
 
-            <TextField
-                id="moneyLeftAfterPurchaseId"
-                label="Pengar kvar efter köp (kr)"
-                className={classes.textField}
-                margin="normal"
-                required={true}
-                value={state.moneyLeftAfterPurchase}
-                onChange={handleNumberChange("moneyLeftAfterPurchase")}
-                type="number"
-            />
+                <TextField
+                    id="moneyLeftAfterPurchaseId"
+                    label="Pengar kvar efter köp (kr)"
+                    className={classes.textField}
+                    margin="normal"
+                    required={true}
+                    value={state.moneyLeftAfterPurchase}
+                    onChange={handleNumberChange("moneyLeftAfterPurchase")}
+                    type="number"
+                />
 
-            <TextField
-                id="interestId"
-                label="Ränta lån (%)"
-                className={classes.textField}
-                margin="normal"
-                required={true}
-                value={state.interest}
-                onChange={handleNumberChange("interest")}
-                type="number"
-            />
+                <TextField
+                    id="interestId"
+                    label="Ränta lån (%)"
+                    className={classes.textField}
+                    margin="normal"
+                    required={true}
+                    value={state.interest}
+                    onChange={handleNumberChange("interest")}
+                    type="number"
+                />
 
-            <TextField
-                id="maxLeverageId"
-                label="Max lånekvot (%)"
-                className={classes.textField}
-                margin="normal"
-                required={true}
-                value={state.maxLeverageLevel}
-                onChange={handleNumberChange("maxLeverageLevel")}
-                type="number"
-            />
+                <TextField
+                    id="maxLeverageId"
+                    label="Max lånekvot (%)"
+                    className={classes.textField}
+                    margin="normal"
+                    required={true}
+                    value={state.maxLeverageLevel}
+                    onChange={handleNumberChange("maxLeverageLevel")}
+                    type="number"
+                />
 
-            <TextField
-                id="pantbrev"
-                label="Pantbrev"
-                className={classes.textField}
-                value={state.pantBrev}
-                onChange={handleChange("pantBrev")}
-                margin="normal"
-                required={true}
-                select={true}>
+                <TextField
+                    id="pantbrev"
+                    label="Pantbrev"
+                    className={classes.textField}
+                    value={state.pantBrev}
+                    onChange={handleChange("pantBrev")}
+                    margin="normal"
+                    required={true}
+                    select={true}>
 
-                <MenuItem key="yes" value={true}>Ja</MenuItem>
-                <MenuItem key="no" value={false}>Nej</MenuItem>
-            </TextField>
+                    <MenuItem key="yes" value={true}>Ja</MenuItem>
+                    <MenuItem key="no" value={false}>Nej</MenuItem>
+                </TextField>
 
-            <TextField
-                id="profitOnSale"
-                label="Vinst på försäljning (kr)"
-                className={classes.textField}
-                margin="normal"
-                required={true}
-                value={state.profitOnSale}
-                onChange={handleNumberChange("profitOnSale")}
-                type="number"
-            />
-            <TextField
-                id="householdIncomeId"
-                label="Hushållets totala inkomster (kr)"
-                className={classes.textField}
-                margin="normal"
-                required={true}
-                value={state.householdIncome}
-                onChange={handleNumberChange("householdIncome")}
-                type="number"
-            />
-        </form>
+                <TextField
+                    id="profitOnSale"
+                    label="Vinst på försäljning (kr)"
+                    className={classes.textField}
+                    margin="normal"
+                    required={true}
+                    value={state.profitOnSale}
+                    onChange={handleNumberChange("profitOnSale")}
+                    type="number"
+                />
+                <TextField
+                    id="householdIncomeId"
+                    label="Totala inkomster (kr)"
+                    className={classes.textField}
+                    margin="normal"
+                    required={true}
+                    value={state.householdIncome}
+                    onChange={handleNumberChange("householdIncome")}
+                    type="number"
+                />
+            </form>
+        </Paper>
     )
 };
 
 const styles = theme => ({
+    root: {
+        width: '100%',
+        marginTop: theme.spacing.unit * 3,
+        overflowX: 'auto',
+        padding: '1% 56px 1% 24px',
+    },
+    p: {
+      paddingLeft: theme.spacing.unit,
+    },
     container: {
         display: 'flex',
         flexWrap: 'wrap',
