@@ -1,10 +1,7 @@
 import React from 'react';
 import './App.css';
+import CalculateContainer from "./containers/CalculateContainer";
 
-const App = () => (
-  <div>
-    Test
-  </div>
-);
+const App = () => <div className="container"><CalculateContainer/></div>;
 
 export default App;
