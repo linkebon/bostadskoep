@@ -30,7 +30,12 @@ export const calculateAmortization = (householdIncome, purchaseAmount) => {
     if (purchaseAmount > householdIncome * 4.5) {
         amortizationOnLoan = amortizationOnLoan + 1;
     }
-    return amortizationOnLoan;
+
+    if (amortizationOnLoan > 0) {
+        return purchaseAmount * (amortizationOnLoan / 100);
+    } else {
+        return 0;
+    }
 };
 
 export const calculateInterestCost = (purchaseAmount, interest) => Math.ceil(purchaseAmount * (interest / 100));

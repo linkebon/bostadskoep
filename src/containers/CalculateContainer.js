@@ -1,45 +1,38 @@
 import React, {Component} from 'react';
+import * as ls from '../functions/LocalStorage';
 import BuyingParameters from "../components/BuyingParameters";
 import ControlData from "../components/ControlData";
 import * as CalculatorUtil from "../functions/CalculatorUtil";
 import OneTimeCosts from "../components/OneTimeCosts";
 import OngoingCosts from "../components/OngoingCosts";
 
-class CalculateContainer extends Component {
-/*    state = {
-        pantBrev: false,
-        purchaseAmount: "",
-        savingsPerMonth: "",
-        savingsMonths: "",
-        cash: "",
-        moneyLeftAfterPurchase: "",
-        maxLeverageLevel: "",
-        interest: "",
-        profitOnSale: "",
-        householdIncome: "",
-        operationCosts: ""
-    };*/
+const initialState = {pantBrev: false, purchaseAmount: "", savingsPerMonth: "", savingsMonths: "", cash: "", moneyLeftAfterPurchase: "", maxLeverageLevel: "", interest: "", profitOnSale: "", householdIncome: "", operationCosts: ""};
 
-        state = {
-            pantBrev: false,
-            purchaseAmount: 1000,
-            savingsPerMonth: 10,
-            savingsMonths: 5,
-            cash: 100,
-            moneyLeftAfterPurchase: 10,
-            maxLeverageLevel: 0,
-            interest: 0,
-            profitOnSale: 100,
-            householdIncome: 10,
-            operationCosts: 10
-        };
+class CalculateContainer extends Component {
+    state = initialState;
+
+    componentDidMount() {
+        const existingState = ls.getState('buyParameters');
+        if (existingState != null) {
+            this.setState(existingState);
+        }
+    }
+
+    clearInput = () => {
+        ls.clear();
+        this.setState(initialState);
+    };
 
     handleNumberChange = name => event => {
-        this.setState({[name]: Number(event.target.value)});
+        const newState = {...this.state, [name]: Number(event.target.value)};
+        ls.saveState('buyParameters', newState);
+        this.setState(newState);
     };
 
     handleChange = name => event => {
-        this.setState({[name]: event.target.value});
+        const newState = {...this.state, [name]: event.target.value};
+        ls.saveState('buyParameters', newState);
+        this.setState(newState);
     };
 
     render() {
@@ -57,7 +50,9 @@ class CalculateContainer extends Component {
                 <BuyingParameters
                     state={this.state}
                     handleChange={this.handleChange}
-                    handleNumberChange={this.handleNumberChange}/>
+                    handleNumberChange={this.handleNumberChange}
+                    clearInput={this.clearInput}
+                />
                 <ControlData
                     suggestedDownPayment={suggestedDownPayment}
                     minimumDownPayment={CalculatorUtil.calculateMinimumDownPayment(this.state.purchaseAmount)}
@@ -70,14 +65,17 @@ class CalculateContainer extends Component {
                     pantBrevCost={this.state.pantBrev ? CalculatorUtil.calculatePantBrevCost(this.state.purchaseAmount) : 0}
                     lagfartCost={CalculatorUtil.calculateLagfartCost(this.state.purchaseAmount)}
                 />
-                <OngoingCosts interestCost={CalculatorUtil.calculateInterestCost(this.state.purchaseAmount, this.state.interest)}
-                              interestCostTaxReduction={CalculatorUtil.calculateInterestCostWithReduction(this.state.purchaseAmount, this.state.interest)}
-                              operationCosts={this.state.operationCosts}
-                              amortization={CalculatorUtil.calculateAmortization(this.state.householdIncome, this.state.purchaseAmount)}
+                <OngoingCosts
+                    interestCost={CalculatorUtil.calculateInterestCost(this.state.purchaseAmount, this.state.interest)}
+                    interestCostTaxReduction={CalculatorUtil.calculateInterestCostWithReduction(this.state.purchaseAmount, this.state.interest)}
+                    operationCosts={this.state.operationCosts}
+                    amortization={CalculatorUtil.calculateAmortization(this.state.householdIncome, this.state.purchaseAmount)}
                 />
             </div>
         )
     }
 }
+
+
 
 export default CalculateContainer;

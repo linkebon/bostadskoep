@@ -4,14 +4,14 @@ import TextField from '@material-ui/core/TextField';
 import MenuItem from "@material-ui/core/MenuItem";
 import Paper from '@material-ui/core/Paper';
 
-const BuyingParameters = ({classes, state, handleChange, handleNumberChange}) => {
+const BuyingParameters = ({classes, state, handleChange, handleNumberChange, clearInput}) => {
     return (
         <Paper className={classes.root}>
-            <p className={classes.p}>Parametrar för köp</p>
+            <p className={classes.p}>Parametrar för köp (kr)</p>
             <form className={classes.container} noValidate autoComplete="off">
                 <TextField
                     id="purchaseAmountId"
-                    label="Köpesumma (kr)"
+                    label="Köpesumma"
                     className={classes.textField}
                     value={state.purchaseAmount}
                     onChange={handleNumberChange("purchaseAmount")}
@@ -22,7 +22,7 @@ const BuyingParameters = ({classes, state, handleChange, handleNumberChange}) =>
 
                 <TextField
                     id="operationCostsId"
-                    label="Driftkostnader (hyra, el etc) (kr)"
+                    label="Driftkostnader (hyra, el etc)"
                     className={classes.textField}
                     value={state.operationCosts}
                     onChange={handleNumberChange("operationCosts")}
@@ -33,7 +33,7 @@ const BuyingParameters = ({classes, state, handleChange, handleNumberChange}) =>
 
                 <TextField
                     id="cashId"
-                    label="Kontanter för köp (kr)"
+                    label="Kontanter för köp"
                     className={classes.textField}
                     value={state.cash}
                     onChange={handleNumberChange("cash")}
@@ -44,7 +44,7 @@ const BuyingParameters = ({classes, state, handleChange, handleNumberChange}) =>
 
                 <TextField
                     id="savingsPerMonthId"
-                    label="Sparande per månad (kr)"
+                    label="Sparande per månad"
                     className={classes.textField}
                     margin="normal"
                     required={true}
@@ -66,7 +66,7 @@ const BuyingParameters = ({classes, state, handleChange, handleNumberChange}) =>
 
                 <TextField
                     id="moneyLeftAfterPurchaseId"
-                    label="Pengar kvar efter köp (kr)"
+                    label="Pengar kvar efter köp"
                     className={classes.textField}
                     margin="normal"
                     required={true}
@@ -76,7 +76,7 @@ const BuyingParameters = ({classes, state, handleChange, handleNumberChange}) =>
                 />
                 <TextField
                     id="profitOnSale"
-                    label="Vinst på försäljning (kr)"
+                    label="Vinst på försäljning"
                     className={classes.textField}
                     margin="normal"
                     required={true}
@@ -86,7 +86,7 @@ const BuyingParameters = ({classes, state, handleChange, handleNumberChange}) =>
                 />
                 <TextField
                     id="householdIncomeId"
-                    label="Totala inkomster (kr)"
+                    label="Totala inkomster"
                     className={classes.textField}
                     margin="normal"
                     required={true}
@@ -129,6 +129,10 @@ const BuyingParameters = ({classes, state, handleChange, handleNumberChange}) =>
                     type="number"
                 />
             </form>
+            <input type="button" className={"btn btn-danger " + classes.button}  value="Rensa" onClick={(e) => {
+                e.preventDefault();
+                clearInput();
+            }}/>
         </Paper>
     )
 };
@@ -141,7 +145,10 @@ const styles = theme => ({
         padding: '1% 56px 1% 24px',
     },
     p: {
-      paddingLeft: theme.spacing.unit,
+        paddingLeft: theme.spacing.unit,
+    },
+    button: {
+        marginLeft: theme.spacing.unit,
     },
     container: {
         display: 'flex',
