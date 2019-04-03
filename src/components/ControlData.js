@@ -52,7 +52,7 @@ const ControlData = ({classes, suggestedDownPayment, minimumDownPayment, moneySa
                                 {loanAmount} kr
                             </TableCell>
                         </TableRow>
-                        <TableRow>
+                        <TableRow hidden={isNaN(loanQuota)}>
                             <TableCell>
                                 Lånekvot
                             </TableCell>

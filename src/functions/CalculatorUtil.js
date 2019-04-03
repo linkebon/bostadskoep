@@ -18,3 +18,24 @@ export const calculateLoanAmount = (purchaseAmount, downPayment) => Math.floor(p
 export const calculateLoanQuota = (purchaseAmount, downPayment) => (((purchaseAmount - downPayment) / purchaseAmount) * 100).toFixed(2);
 
 export const calculateMaxLoanFromBankFourPointFive = householdIncome => Math.floor(householdIncome * 4.5);
+
+export const calculateAmortization = (householdIncome, purchaseAmount) => {
+    let amortizationOnLoan = 0;
+    if (householdIncome / purchaseAmount > 0.7) {
+        amortizationOnLoan = 2;
+    } else if (householdIncome / purchaseAmount > 0.5) {
+        amortizationOnLoan = 1;
+    }
+
+    if (purchaseAmount > householdIncome * 4.5) {
+        amortizationOnLoan = amortizationOnLoan + 1;
+    }
+    return amortizationOnLoan;
+};
+
+export const calculateInterestCost = (purchaseAmount, interest) => Math.ceil(purchaseAmount * (interest / 100));
+
+export const calculateInterestCostWithReduction = (purchaseAmount, interest) => {
+    const interestCost = calculateInterestCost(purchaseAmount, interest);
+    return Math.floor(interestCost - (interestCost * (30 / 100)));
+};

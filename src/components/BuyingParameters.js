@@ -21,8 +21,19 @@ const BuyingParameters = ({classes, state, handleChange, handleNumberChange}) =>
                 />
 
                 <TextField
+                    id="operationCostsId"
+                    label="Driftkostnader (hyra, el etc) (kr)"
+                    className={classes.textField}
+                    value={state.operationCosts}
+                    onChange={handleNumberChange("operationCosts")}
+                    margin="normal"
+                    required={true}
+                    type="number"
+                />
+
+                <TextField
                     id="cashId"
-                    label="Likvider (kr)"
+                    label="Kontanter för köp (kr)"
                     className={classes.textField}
                     value={state.cash}
                     onChange={handleNumberChange("cash")}
