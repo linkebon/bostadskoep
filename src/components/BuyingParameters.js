@@ -7,7 +7,7 @@ import Paper from '@material-ui/core/Paper';
 const BuyingParameters = ({classes, state, handleChange, handleNumberChange, clearInput}) => {
     return (
         <Paper className={classes.root}>
-            <p className={classes.p}>Parametrar för köp (kr)</p>
+            <p className={classes.p}>Parametrar för köp av villa (kr)</p>
             <form className={classes.container} noValidate autoComplete="off">
                 <TextField
                     id="purchaseAmountId"
