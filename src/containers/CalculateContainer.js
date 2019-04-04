@@ -3,10 +3,21 @@ import * as ls from '../functions/LocalStorage';
 import BuyingParameters from "../components/BuyingParameters";
 import ControlData from "../components/ControlData";
 import * as CalculatorUtil from "../functions/CalculatorUtil";
-import OneTimeCosts from "../components/OneTimeCosts";
 import OngoingCosts from "../components/OngoingCosts";
 
-const initialState = {pantBrev: false, purchaseAmount: "", savingsPerMonth: "", savingsMonths: "", cash: "", moneyLeftAfterPurchase: "", maxLeverageLevel: "", interest: "", profitOnSale: "", householdIncome: "", operationCosts: ""};
+const initialState = {
+    pantBrev: false,
+    purchaseAmount: 0,
+    savingsPerMonth: 0,
+    savingsMonths: 0,
+    cash: 0,
+    moneyLeftAfterPurchase: 0,
+    maxLeverageLevel: 0,
+    interest: 0,
+    profitOnSale: 0,
+    householdIncome: 0,
+    operationCosts: 0
+};
 
 class CalculateContainer extends Component {
     state = initialState;
@@ -60,22 +71,19 @@ class CalculateContainer extends Component {
                     loanAmount={loanAmount}
                     loanQuota={CalculatorUtil.calculateLoanQuota(this.state.purchaseAmount, suggestedDownPayment)}
                     maxLoanAmontFromBank={CalculatorUtil.calculateMaxLoanFromBankFourPointFive(this.state.householdIncome)}
-                />
-                <OneTimeCosts
                     pantBrevCost={this.state.pantBrev ? CalculatorUtil.calculatePantBrevCost(this.state.purchaseAmount) : 0}
                     lagfartCost={CalculatorUtil.calculateLagfartCost(this.state.purchaseAmount)}
                 />
                 <OngoingCosts
-                    interestCost={CalculatorUtil.calculateInterestCost(this.state.purchaseAmount, this.state.interest)}
-                    interestCostTaxReduction={CalculatorUtil.calculateInterestCostWithReduction(this.state.purchaseAmount, this.state.interest)}
+                    interestCost={CalculatorUtil.getPerMonth(CalculatorUtil.calculateInterestCostPerMonth(this.state.purchaseAmount, this.state.interest))}
+                    interestCostTaxReduction={CalculatorUtil.getPerMonth(CalculatorUtil.calculateInterestCostWithReductionPerMonth(this.state.purchaseAmount, this.state.interest))}
                     operationCosts={this.state.operationCosts}
-                    amortization={CalculatorUtil.calculateAmortization(this.state.householdIncome, this.state.purchaseAmount)}
+                    amortization={CalculatorUtil.getPerMonth(CalculatorUtil.calculateAmortization(this.state.householdIncome, this.state.purchaseAmount))}
                 />
             </div>
         )
     }
 }
-
 
 
 export default CalculateContainer;

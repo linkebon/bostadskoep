@@ -1,23 +1,27 @@
 export const calculateSuggestedDownPayment = (purchaseAmount, cash, moneySavedEachMonth, monthsCount, profitOnSale, moneyLeftAfterPurchase, pantBrevNeeded) => {
+    console.log(purchaseAmount + " " + cash + " " + moneySavedEachMonth + " " + monthsCount + " " + profitOnSale + " " + moneyLeftAfterPurchase + " " + pantBrevNeeded);
     const lagfartCost = calculateLagfartCost(purchaseAmount);
+    console.log("lagfart cost: " + lagfartCost);
     const pantBrevCost = pantBrevNeeded === true ? calculatePantBrevCost(purchaseAmount) : 0;
+    console.log("pantBrev cost: " + pantBrevCost);
     const downPayment = cash + calculateMoneySavedUntilPurchase(moneySavedEachMonth, monthsCount) + profitOnSale - moneyLeftAfterPurchase - pantBrevCost - lagfartCost;
-    return Math.floor(downPayment);
+    console.log(downPayment);
+    return Math.round(downPayment);
 };
 
-export const calculateMinimumDownPayment = (purchaseAmount) => Math.floor(purchaseAmount * (15 / 100));
+export const calculateMinimumDownPayment = (purchaseAmount) => Math.round(purchaseAmount * (15 / 100));
 
-export const calculateMoneySavedUntilPurchase = (moneySavedEachMonth, monthsCount) => Math.floor(moneySavedEachMonth * monthsCount);
+export const calculateMoneySavedUntilPurchase = (moneySavedEachMonth, monthsCount) => Math.round(moneySavedEachMonth * monthsCount);
 
-export const calculateLagfartCost = purchaseAmount => Math.ceil(purchaseAmount * (1.5 / 100));
+export const calculateLagfartCost = purchaseAmount => Math.round(purchaseAmount * (1.5 / 100));
 
-export const calculatePantBrevCost = purchaseAmount => Math.ceil(purchaseAmount * (2 / 100));
+export const calculatePantBrevCost = purchaseAmount => Math.round(purchaseAmount * (2 / 100));
 
-export const calculateLoanAmount = (purchaseAmount, downPayment) => Math.floor(purchaseAmount - downPayment);
+export const calculateLoanAmount = (purchaseAmount, downPayment) => downPayment > 0 ? Math.round(purchaseAmount - downPayment) : purchaseAmount;
 
-export const calculateLoanQuota = (purchaseAmount, downPayment) => (((purchaseAmount - downPayment) / purchaseAmount) * 100).toFixed(2);
+export const calculateLoanQuota = (purchaseAmount, downPayment) => (((purchaseAmount - downPayment) / purchaseAmount) * 100);
 
-export const calculateMaxLoanFromBankFourPointFive = householdIncome => Math.floor(householdIncome * 4.5);
+export const calculateMaxLoanFromBankFourPointFive = householdIncome => Math.round(householdIncome * 4.5);
 
 export const calculateAmortization = (householdIncome, purchaseAmount) => {
     let amortizationOnLoan = 0;
@@ -32,15 +36,22 @@ export const calculateAmortization = (householdIncome, purchaseAmount) => {
     }
 
     if (amortizationOnLoan > 0) {
-        return purchaseAmount * (amortizationOnLoan / 100);
+        return Math.round(purchaseAmount * (amortizationOnLoan / 100));
     } else {
         return 0;
     }
 };
 
-export const calculateInterestCost = (purchaseAmount, interest) => Math.ceil(purchaseAmount * (interest / 100));
+export const calculateInterestCostPerMonth = (purchaseAmount, interest) => Math.round(purchaseAmount * (interest / 100));
 
-export const calculateInterestCostWithReduction = (purchaseAmount, interest) => {
-    const interestCost = calculateInterestCost(purchaseAmount, interest);
-    return Math.floor(interestCost - (interestCost * (30 / 100)));
+export const calculateInterestCostWithReductionPerMonth = (purchaseAmount, interest) => {
+    const interestCost = calculateInterestCostPerMonth(purchaseAmount, interest);
+    return Math.round(interestCost - (interestCost * (30 / 100)));
+};
+
+export const getPerMonth = (value) => {
+    if (value === 0) {
+        return 0;
+    }
+    return Math.round(value / 12);
 };

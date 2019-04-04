@@ -6,6 +6,9 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import CurrencyFormat from 'react-currency-format';
+import Tooltip from '@material-ui/core/Tooltip';
+import Info from '@material-ui/icons/Info';
 
 const OngoingCosts = ({classes, interestCost, interestCostTaxReduction, amortization, operationCosts}) => (
     <Paper className={classes.root}>
@@ -22,23 +25,20 @@ const OngoingCosts = ({classes, interestCost, interestCostTaxReduction, amortiza
                         Räntekostnader
                     </TableCell>
                     <TableCell>
-                        {interestCost}
-                    </TableCell>
-                </TableRow>
-                <TableRow>
-                    <TableCell>
-                        Räntekostnader med ränteavdrag (30%)
-                    </TableCell>
-                    <TableCell>
-                        {interestCostTaxReduction}
+                        <CurrencyFormat value={interestCost} displayType={'text'} thousandSeparator={true} suffix="kr"/>
+                        <Tooltip style={{textAlign: "top"}}
+                                 title={`Med ränteavdrag blir räntekostnaden: ${interestCostTaxReduction} kr`}
+                                 interactive={true} leaveDelay={800} placement={"top"}>
+                            <Info/>
+                        </Tooltip>
                     </TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell>
                         Amortering
                     </TableCell>
-                    <TableCell color={'red'}>
-                        {amortization}
+                    <TableCell>
+                        <CurrencyFormat value={amortization} displayType={'text'} thousandSeparator={true} suffix="kr"/>
                     </TableCell>
                 </TableRow>
                 <TableRow>
@@ -46,17 +46,23 @@ const OngoingCosts = ({classes, interestCost, interestCostTaxReduction, amortiza
                         Driftkostnader (el, vatten, hyra etc)
                     </TableCell>
                     <TableCell>
-                        {operationCosts}
+                        <CurrencyFormat value={operationCosts} displayType={'text'} thousandSeparator={true}
+                                        suffix="kr"/>
                     </TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell style={{fontWeight: 'bold'}}>Totalt per månad</TableCell>
-                    <TableCell style={{fontWeight: 'bold'}}>{operationCosts + interestCost + amortization}</TableCell>
+                    <TableCell style={{fontWeight: 'bold'}}>
+                        <CurrencyFormat value={replaceNanWithZero(operationCosts) + replaceNanWithZero(interestCost) + replaceNanWithZero(amortization)} displayType={'text'}
+                                        thousandSeparator={true} suffix="kr"/>
+                    </TableCell>
                 </TableRow>
             </TableBody>
         </Table>
     </Paper>
 );
+
+const replaceNanWithZero = (v) => isNaN(v) ? 0 : v;
 
 const styles = theme => ({
     root: {

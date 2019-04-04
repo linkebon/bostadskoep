@@ -16,7 +16,6 @@ const BuyingParameters = ({classes, state, handleChange, handleNumberChange, cle
                     value={state.purchaseAmount}
                     onChange={handleNumberChange("purchaseAmount")}
                     margin="normal"
-                    required={true}
                     type="number"
                 />
 
@@ -27,7 +26,6 @@ const BuyingParameters = ({classes, state, handleChange, handleNumberChange, cle
                     value={state.operationCosts}
                     onChange={handleNumberChange("operationCosts")}
                     margin="normal"
-                    required={true}
                     type="number"
                 />
 
@@ -38,7 +36,6 @@ const BuyingParameters = ({classes, state, handleChange, handleNumberChange, cle
                     value={state.cash}
                     onChange={handleNumberChange("cash")}
                     margin="normal"
-                    required={true}
                     type="number"
                 />
 
@@ -47,7 +44,6 @@ const BuyingParameters = ({classes, state, handleChange, handleNumberChange, cle
                     label="Sparande per månad"
                     className={classes.textField}
                     margin="normal"
-                    required={true}
                     value={state.savingsPerMonth}
                     onChange={handleNumberChange("savingsPerMonth")}
                     type="number"
@@ -58,7 +54,6 @@ const BuyingParameters = ({classes, state, handleChange, handleNumberChange, cle
                     label="Antal månader"
                     className={classes.textField}
                     margin="normal"
-                    required={true}
                     value={state.savingsMonths}
                     onChange={handleNumberChange("savingsMonths")}
                     type="number"
@@ -69,27 +64,24 @@ const BuyingParameters = ({classes, state, handleChange, handleNumberChange, cle
                     label="Pengar kvar efter köp"
                     className={classes.textField}
                     margin="normal"
-                    required={true}
                     value={state.moneyLeftAfterPurchase}
                     onChange={handleNumberChange("moneyLeftAfterPurchase")}
                     type="number"
                 />
                 <TextField
                     id="profitOnSale"
-                    label="Vinst på försäljning"
+                    label="Förväntad vinst på egen försäljning"
                     className={classes.textField}
                     margin="normal"
-                    required={true}
                     value={state.profitOnSale}
                     onChange={handleNumberChange("profitOnSale")}
                     type="number"
                 />
                 <TextField
                     id="householdIncomeId"
-                    label="Totala inkomster"
+                    label="Hushållets totala inkomster per år (brutto)"
                     className={classes.textField}
                     margin="normal"
-                    required={true}
                     value={state.householdIncome}
                     onChange={handleNumberChange("householdIncome")}
                     type="number"
@@ -102,7 +94,6 @@ const BuyingParameters = ({classes, state, handleChange, handleNumberChange, cle
                     value={state.pantBrev}
                     onChange={handleChange("pantBrev")}
                     margin="normal"
-                    required={true}
                     select={true}>
 
                     <MenuItem key="yes" value={true}>Ja</MenuItem>
