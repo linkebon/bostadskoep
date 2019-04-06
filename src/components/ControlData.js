@@ -79,24 +79,8 @@ const ControlData = ({classes, suggestedDownPayment, minimumDownPayment, moneySa
                             <CurrencyFormat value={loanQuota.toFixed(2)} displayType={'text'} suffix="%"/>
                             <Tooltip style={{textAlign: "top"}}
                                      title="Lånekvoten är större än din maximala lånekvot"
-                                     interactive={true} leaveDelay={800} placement={"top"}>
-                                <Warning/>
-                            </Tooltip>
-                        </TableCell>
-                    </TableRow>
-                    <TableRow style={{backgroundColor: loanAmount > maxLoanAmontFromBank ? orange : ''}}
-                              hidden={suggestedDownPayment >= loanAmount}>
-                        <TableCell>
-                            Utlåning från bank större 4,5 gånger
-                            årsinkomst {loanAmount > maxLoanAmontFromBank ? '(amorteringkrav ökar med 1%)' : ''}
-                        </TableCell>
-                        <TableCell>
-                            <CurrencyFormat value={Math.round(maxLoanAmontFromBank)} displayType={'text'}
-                                            thousandSeparator={true}
-                                            suffix="kr"/>
-                            <Tooltip style={{textAlign: "top"}}
-                                     title="Om belåningen är större än 4.5 gånger årsinkomsten för hushållet ökar amorteringskravet med 1%"
-                                     interactive={true} leaveDelay={800} placement={"top"}>
+                                     interactive={true} leaveDelay={800} placement={"top"}
+                                     hidden={maxLeverageLevel > loanQuota}>
                                 <Warning/>
                             </Tooltip>
                         </TableCell>
@@ -108,6 +92,12 @@ const ControlData = ({classes, suggestedDownPayment, minimumDownPayment, moneySa
                         <TableCell style={{fontWeight: 'bold'}}>
                             <CurrencyFormat value={Math.round(loanAmount)} displayType={'text'} thousandSeparator={true}
                                             suffix="kr"/>
+                            <Tooltip style={{textAlign: "top"}}
+                                     title="Belåningen är större än 4.5 gånger årsinkomsten för hushållet och ökar därför amorteringskravet med 1%"
+                                     interactive={true} leaveDelay={800} placement={"top"}
+                                     hidden={loanAmount < maxLoanAmontFromBank}>
+                                <Warning/>
+                            </Tooltip>
                         </TableCell>
                     </TableRow>
                     <TableRow style={{backgroundColor: suggestedDownPayment <= 0 ? orange : ''}}>
