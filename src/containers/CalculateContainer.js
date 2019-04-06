@@ -75,6 +75,7 @@ class CalculateContainer extends Component {
                     maxLoanAmontFromBank={CalculatorUtil.calculateMaxLoanFromBankFourPointFive(this.state.householdIncome)}
                     pantBrevCost={this.state.pantBrev ? CalculatorUtil.calculatePantBrevCost(this.state.purchaseAmount) : 0}
                     lagfartCost={CalculatorUtil.calculateLagfartCost(this.state.purchaseAmount)}
+                    maxLeverageLevel={this.state.maxLeverageLevel}
                 />
                 <OngoingCosts
                     interestCost={CalculatorUtil.getPerMonth(CalculatorUtil.calculateInterestCost(loanAmount, this.state.interest))}

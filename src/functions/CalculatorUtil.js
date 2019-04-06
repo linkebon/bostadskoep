@@ -31,7 +31,6 @@ export const calculateAmortization = (householdIncome, loanAmount, purchaseAmoun
         amortizationOnLoan = amortizationOnLoan + 1;
     }
 
-    console.log(amortizationOnLoan);
     if (amortizationOnLoan > 0) {
         return loanAmount * (amortizationOnLoan / 100);
     } else {
