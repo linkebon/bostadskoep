@@ -8,12 +8,13 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import CurrencyFormat from 'react-currency-format';
 import Tooltip from '@material-ui/core/Tooltip';
-import Info from '@material-ui/icons/Info';
+import Warning from '@material-ui/icons/Warning'
 
 const ControlData = ({classes, suggestedDownPayment, minimumDownPayment, moneySavedUntilPurchase, loanAmount, loanQuota, maxLoanAmontFromBank, lagfartCost, pantBrevCost, maxLeverageLevel}) => {
-    const red = '#ff5252';
+    const red = '';
     const green = '#c8e6c9';
-    const orange = 'orange';
+    const orange = '';
+
     return (
         <Paper className={classes.root}>
             <Table className={classes.table}>
@@ -47,7 +48,7 @@ const ControlData = ({classes, suggestedDownPayment, minimumDownPayment, moneySa
                                      title="Lagfart behöver betalas med kontanter och det finns inte tillräckligt med kontanter"
                                      interactive={true} leaveDelay={800} placement={"top"}
                                      hidden={suggestedDownPayment > 0}>
-                                <Info/>
+                                <Warning/>
                             </Tooltip>
                         </TableCell>
                     </TableRow>
@@ -64,7 +65,7 @@ const ControlData = ({classes, suggestedDownPayment, minimumDownPayment, moneySa
                                      title="Pantbrev behöver betalas med kontanter och det finns inte tillräckligt med kontanter"
                                      interactive={true} leaveDelay={800} placement={"top"}
                                      hidden={suggestedDownPayment > 0}>
-                                <Info/>
+                                <Warning/>
                             </Tooltip>
                         </TableCell>
                     </TableRow>
@@ -79,7 +80,7 @@ const ControlData = ({classes, suggestedDownPayment, minimumDownPayment, moneySa
                             <Tooltip style={{textAlign: "top"}}
                                      title="Lånekvoten är större än din maximala lånekvot"
                                      interactive={true} leaveDelay={800} placement={"top"}>
-                                <Info/>
+                                <Warning/>
                             </Tooltip>
                         </TableCell>
                     </TableRow>
@@ -96,7 +97,7 @@ const ControlData = ({classes, suggestedDownPayment, minimumDownPayment, moneySa
                             <Tooltip style={{textAlign: "top"}}
                                      title="Om belåningen är större än 4.5 gånger årsinkomsten för hushållet ökar amorteringskravet med 1%"
                                      interactive={true} leaveDelay={800} placement={"top"}>
-                                <Info/>
+                                <Warning/>
                             </Tooltip>
                         </TableCell>
                     </TableRow>
@@ -121,7 +122,7 @@ const ControlData = ({classes, suggestedDownPayment, minimumDownPayment, moneySa
                                      title="Kostnaderna för pantbrev, lagfart, pengarna som ska vara kvar efter köp etc är för stora så kontantinsatsen är mindre än 0."
                                      interactive={true} leaveDelay={800} placement={"top"}
                                      hidden={suggestedDownPayment > 0}>
-                                <Info/>
+                                <Warning/>
                             </Tooltip>
                         </TableCell>
                     </TableRow>
