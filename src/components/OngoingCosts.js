@@ -25,7 +25,7 @@ const OngoingCosts = ({classes, interestCost, interestCostTaxReduction, amortiza
                         Räntekostnader
                     </TableCell>
                     <TableCell>
-                        <CurrencyFormat value={interestCost} displayType={'text'} thousandSeparator={true} suffix="kr"/>
+                        <CurrencyFormat value={Math.round(interestCost)} displayType={'text'} thousandSeparator={true} suffix="kr"/>
                         <Tooltip style={{textAlign: "top"}}
                                  title={`Med ränteavdrag blir räntekostnaden: ${interestCostTaxReduction} kr`}
                                  interactive={true} leaveDelay={800} placement={"top"}>
@@ -38,7 +38,7 @@ const OngoingCosts = ({classes, interestCost, interestCostTaxReduction, amortiza
                         Amortering
                     </TableCell>
                     <TableCell>
-                        <CurrencyFormat value={amortization} displayType={'text'} thousandSeparator={true} suffix="kr"/>
+                        <CurrencyFormat value={Math.round(amortization)} displayType={'text'} thousandSeparator={true} suffix="kr"/>
                     </TableCell>
                 </TableRow>
                 <TableRow>
@@ -46,14 +46,14 @@ const OngoingCosts = ({classes, interestCost, interestCostTaxReduction, amortiza
                         Driftkostnader (el, vatten, hyra etc)
                     </TableCell>
                     <TableCell>
-                        <CurrencyFormat value={operationCosts} displayType={'text'} thousandSeparator={true}
+                        <CurrencyFormat value={Math.round(operationCosts)} displayType={'text'} thousandSeparator={true}
                                         suffix="kr"/>
                     </TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell style={{fontWeight: 'bold'}}>Totalt per månad</TableCell>
                     <TableCell style={{fontWeight: 'bold'}}>
-                        <CurrencyFormat value={replaceNanWithZero(operationCosts) + replaceNanWithZero(interestCost) + replaceNanWithZero(amortization)} displayType={'text'}
+                        <CurrencyFormat value={Math.round(replaceNanWithZero(operationCosts) + replaceNanWithZero(interestCost) + replaceNanWithZero(amortization))} displayType={'text'}
                                         thousandSeparator={true} suffix="kr"/>
                     </TableCell>
                 </TableRow>

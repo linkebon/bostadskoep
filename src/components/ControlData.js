@@ -27,7 +27,7 @@ const ControlData = ({classes, suggestedDownPayment, minimumDownPayment, moneySa
                             Pengar sparade tills köp (inräknat i möjlig kontantinsats)
                         </TableCell>
                         <TableCell>
-                            <CurrencyFormat value={moneySavedUntilPurchase} displayType={'text'}
+                            <CurrencyFormat value={Math.round(moneySavedUntilPurchase)} displayType={'text'}
                                             thousandSeparator={true} suffix="kr"/>
                         </TableCell>
                     </TableRow>
@@ -36,7 +36,7 @@ const ControlData = ({classes, suggestedDownPayment, minimumDownPayment, moneySa
                             Lagfart
                         </TableCell>
                         <TableCell>
-                            <CurrencyFormat value={lagfartCost} displayType={'text'} thousandSeparator={true}
+                            <CurrencyFormat value={Math.round(lagfartCost)} displayType={'text'} thousandSeparator={true}
                                             suffix="kr"/>
                             <Tooltip style={{textAlign: "top"}}
                                      title="Lagfart behöver betalas med kontanter och det finns inte tillräckligt med kontanter"
@@ -52,7 +52,7 @@ const ControlData = ({classes, suggestedDownPayment, minimumDownPayment, moneySa
                             Pantbrev
                         </TableCell>
                         <TableCell>
-                            <CurrencyFormat value={pantBrevCost} displayType={'text'} thousandSeparator={true}
+                            <CurrencyFormat value={Math.round(pantBrevCost)} displayType={'text'} thousandSeparator={true}
                                             suffix="kr"/>
                             <Tooltip style={{textAlign: "top"}}
                                      title="Pantbrev behöver betalas med kontanter och det finns inte tillräckligt med kontanter"
@@ -67,7 +67,7 @@ const ControlData = ({classes, suggestedDownPayment, minimumDownPayment, moneySa
                             Lånekvot
                         </TableCell>
                         <TableCell>
-                            <CurrencyFormat value={loanQuota} displayType={'text'} suffix="%"/>
+                            <CurrencyFormat value={Math.round(loanQuota)} displayType={'text'} suffix="%"/>
                         </TableCell>
                     </TableRow>
                     <TableRow style={{backgroundColor: loanAmount > maxLoanAmontFromBank ? 'orange' : ''}}
@@ -77,7 +77,7 @@ const ControlData = ({classes, suggestedDownPayment, minimumDownPayment, moneySa
                             årsinkomst {loanAmount > maxLoanAmontFromBank ? '(amorteringkrav ökar med 1%)' : ''}
                         </TableCell>
                         <TableCell>
-                            <CurrencyFormat value={maxLoanAmontFromBank} displayType={'text'} thousandSeparator={true}
+                            <CurrencyFormat value={Math.round(maxLoanAmontFromBank)} displayType={'text'} thousandSeparator={true}
                                             suffix="kr"/>
                             <Tooltip style={{textAlign: "top"}}
                                      title="Om belåningen är större än 4.5 gånger årsinkomsten för hushållet ökar amorteringskravet med 1%"
@@ -91,7 +91,7 @@ const ControlData = ({classes, suggestedDownPayment, minimumDownPayment, moneySa
                             Lånesumma
                         </TableCell>
                         <TableCell style={{fontWeight: 'bold'}}>
-                            <CurrencyFormat value={loanAmount} displayType={'text'} thousandSeparator={true}
+                            <CurrencyFormat value={Math.round(loanAmount)} displayType={'text'} thousandSeparator={true}
                                             suffix="kr"/>
                         </TableCell>
                     </TableRow>
@@ -100,7 +100,7 @@ const ControlData = ({classes, suggestedDownPayment, minimumDownPayment, moneySa
                             Möjlig kontantinsats
                         </TableCell>
                         <TableCell style={{fontWeight: 'bold'}}>
-                            <CurrencyFormat value={suggestedDownPayment} displayType={'text'} thousandSeparator={true}
+                            <CurrencyFormat value={Math.round(suggestedDownPayment)} displayType={'text'} thousandSeparator={true}
                                             suffix="kr"/>
                             <Tooltip style={{textAlign: "top"}}
                                      title="Kostnaderna för pantbrev, lagfart, pengarna som ska vara kvar efter köp etc är för stora så kontantinsatsen är mindre än 0."
