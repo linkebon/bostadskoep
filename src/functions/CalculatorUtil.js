@@ -19,30 +19,31 @@ export const calculateLoanQuota = (purchaseAmount, downPayment) => (((purchaseAm
 
 export const calculateMaxLoanFromBankFourPointFive = householdIncome => householdIncome * 4.5;
 
-export const calculateAmortization = (householdIncome, purchaseAmount) => {
+export const calculateAmortization = (householdIncome, loanAmount, purchaseAmount) => {
     let amortizationOnLoan = 0;
-    if (householdIncome / purchaseAmount > 0.7) {
+    if (loanAmount / purchaseAmount > 0.7) {
         amortizationOnLoan = 2;
-    } else if (householdIncome / purchaseAmount > 0.5) {
+    } else if (loanAmount / purchaseAmount > 0.5) {
         amortizationOnLoan = 1;
     }
 
-    if (purchaseAmount > householdIncome * 4.5) {
+    if (loanAmount > householdIncome * 4.5) {
         amortizationOnLoan = amortizationOnLoan + 1;
     }
 
+    console.log(amortizationOnLoan);
     if (amortizationOnLoan > 0) {
-        return purchaseAmount * (amortizationOnLoan / 100);
+        return loanAmount * (amortizationOnLoan / 100);
     } else {
         return 0;
     }
 };
 
-export const calculateInterestCostPerMonth = (purchaseAmount, interest) => purchaseAmount * (interest / 100);
+export const calculateInterestCost = (loanAmount, interest) => (loanAmount * (interest / 100));
 
-export const calculateInterestCostWithReductionPerMonth = (purchaseAmount, interest) => {
-    const interestCost = calculateInterestCostPerMonth(purchaseAmount, interest);
-    return interestCost - (interestCost * (30 / 100));
+export const calculateInterestCostWithReduction = (loanAmount, interest) => {
+    const interestCost = calculateInterestCost(loanAmount, interest);
+    return (interestCost - (interestCost * (30 / 100)));
 };
 
 export const getPerMonth = (value) => {

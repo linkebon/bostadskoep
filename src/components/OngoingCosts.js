@@ -27,7 +27,7 @@ const OngoingCosts = ({classes, interestCost, interestCostTaxReduction, amortiza
                     <TableCell>
                         <CurrencyFormat value={Math.round(interestCost)} displayType={'text'} thousandSeparator={true} suffix="kr"/>
                         <Tooltip style={{textAlign: "top"}}
-                                 title={`Med ränteavdrag blir räntekostnaden: ${interestCostTaxReduction} kr`}
+                                 title={`Med ränteavdrag blir räntekostnaden: ${Math.round(interestCostTaxReduction)} kr`}
                                  interactive={true} leaveDelay={800} placement={"top"}>
                             <Info/>
                         </Tooltip>

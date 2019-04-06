@@ -55,7 +55,9 @@ class CalculateContainer extends Component {
             this.state.profitOnSale,
             this.state.moneyLeftAfterPurchase,
             this.state.pantBrev);
+
         const loanAmount = CalculatorUtil.calculateLoanAmount(this.state.purchaseAmount, suggestedDownPayment);
+
         return (
             <div style={{marginTop: '1%', marginBottom: '3%'}}>
                 <BuyingParameters
@@ -75,10 +77,10 @@ class CalculateContainer extends Component {
                     lagfartCost={CalculatorUtil.calculateLagfartCost(this.state.purchaseAmount)}
                 />
                 <OngoingCosts
-                    interestCost={CalculatorUtil.getPerMonth(CalculatorUtil.calculateInterestCostPerMonth(this.state.purchaseAmount, this.state.interest))}
-                    interestCostTaxReduction={CalculatorUtil.getPerMonth(CalculatorUtil.calculateInterestCostWithReductionPerMonth(this.state.purchaseAmount, this.state.interest))}
+                    interestCost={CalculatorUtil.getPerMonth(CalculatorUtil.calculateInterestCost(loanAmount, this.state.interest))}
+                    interestCostTaxReduction={CalculatorUtil.getPerMonth(CalculatorUtil.calculateInterestCostWithReduction(loanAmount, this.state.interest))}
                     operationCosts={this.state.operationCosts}
-                    amortization={CalculatorUtil.getPerMonth(CalculatorUtil.calculateAmortization(this.state.householdIncome, this.state.purchaseAmount))}
+                    amortization={CalculatorUtil.getPerMonth(CalculatorUtil.calculateAmortization(this.state.householdIncome, loanAmount, this.state.purchaseAmount))}
                 />
             </div>
         )
