@@ -75,7 +75,7 @@ const ControlData = ({classes, suggestedDownPayment, minimumDownPayment, moneySa
                             Lånekvot
                         </TableCell>
                         <TableCell>
-                            <CurrencyFormat value={Math.round(loanQuota)} displayType={'text'} suffix="%"/>
+                            <CurrencyFormat value={loanQuota.toFixed(2)} displayType={'text'} suffix="%"/>
                             <Tooltip style={{textAlign: "top"}}
                                      title="Lånekvoten är större än din maximala lånekvot"
                                      interactive={true} leaveDelay={800} placement={"top"}>
