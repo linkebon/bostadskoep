@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 WEB_HOME=/home/pi/web
 APP_NAME=bostadskoep
 APP_HOME=${WEB_HOME}/${APP_NAME}
