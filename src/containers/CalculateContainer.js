@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import * as ls from '../functions/LocalStorage';
+import * as ls from '../util/LocalStorage';
 import BuyingParameters from "../components/BuyingParameters";
 import ControlData from "../components/ControlData";
-import * as CalculatorUtil from "../functions/CalculatorUtil";
+import * as CalculatorUtil from "../util/CalculatorUtil";
 import OngoingCosts from "../components/OngoingCosts";
 
 const initialState = {

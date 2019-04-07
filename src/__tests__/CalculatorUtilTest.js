@@ -1,4 +1,4 @@
-import * as CalculatorUtil from '../functions/CalculatorUtil';
+import * as CalculatorUtil from '../util/CalculatorUtil';
 
 it('calculate lagfart cost', () => {
    expect(CalculatorUtil.calculateLagfartCost(100)).toEqual(1.5);
