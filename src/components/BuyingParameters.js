@@ -11,7 +11,7 @@ const BuyingParameters = ({classes, state, handleChange, handleNumberChange, cle
             <form className={classes.container} noValidate autoComplete="off">
                 <TextField
                     id="houseId"
-                    label="house"
+                    label="Typ av bostad"
                     className={classes.textField}
                     value={state.house}
                     onChange={handleChange("house")}
