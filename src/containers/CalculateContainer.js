@@ -6,6 +6,7 @@ import * as CalculatorUtil from "../util/CalculatorUtil";
 import OngoingCosts from "../components/OngoingCosts";
 
 const initialState = {
+    house: true,
     pantBrev: false,
     purchaseAmount: 0,
     savingsPerMonth: 0,
@@ -76,6 +77,7 @@ class CalculateContainer extends Component {
                     pantBrevCost={this.state.pantBrev ? CalculatorUtil.calculatePantBrevCost(this.state.purchaseAmount) : 0}
                     lagfartCost={CalculatorUtil.calculateLagfartCost(this.state.purchaseAmount)}
                     maxLeverageLevel={this.state.maxLeverageLevel}
+                    house={this.state.house}
                 />
                 <OngoingCosts
                     interestCost={CalculatorUtil.getPerMonth(CalculatorUtil.calculateInterestCost(loanAmount, this.state.interest))}

@@ -4,11 +4,39 @@ import TextField from '@material-ui/core/TextField';
 import MenuItem from "@material-ui/core/MenuItem";
 import Paper from '@material-ui/core/Paper';
 
-const BuyingParameters = ({classes, state, handleChange, handleNumberChange, clearInput}) => {
+const BuyingParameters = ({classes, state, handleChange, handleNumberChange, clearInput, house}) => {
     return (
         <Paper className={classes.root}>
             <p className={classes.p}>Parametrar för köp av villa (kr)</p>
             <form className={classes.container} noValidate autoComplete="off">
+                <TextField
+                    id="houseId"
+                    label="house"
+                    className={classes.textField}
+                    value={state.house}
+                    onChange={handleChange("house")}
+                    margin="normal"
+                    select={true}>
+
+                    <MenuItem key="Hus" value={true}>Hus</MenuItem>
+                    <MenuItem key="Bostadsrätt" value={false}>Bostadsrätt</MenuItem>
+                </TextField>
+
+                <TextField
+                    id="pantbrev"
+                    label="Pantbrev"
+                    className={classes.textField + " hidden"}
+                    value={state.pantBrev}
+                    onChange={handleChange("pantBrev")}
+                    margin="normal"
+                    select={true}
+                    disabled={!state.house}>
+
+
+                    <MenuItem key="yes" value={true}>Ja</MenuItem>
+                    <MenuItem key="no" value={false}>Nej</MenuItem>
+                </TextField>
+
                 <TextField
                     id="purchaseAmountId"
                     label="Köpesumma"
@@ -68,6 +96,7 @@ const BuyingParameters = ({classes, state, handleChange, handleNumberChange, cle
                     onChange={handleNumberChange("moneyLeftAfterPurchase")}
                     type="number"
                 />
+
                 <TextField
                     id="profitOnSale"
                     label="Förväntad vinst på egen försäljning"
@@ -77,6 +106,7 @@ const BuyingParameters = ({classes, state, handleChange, handleNumberChange, cle
                     onChange={handleNumberChange("profitOnSale")}
                     type="number"
                 />
+
                 <TextField
                     id="householdIncomeId"
                     label="Hushållets totala inkomster per år (brutto)"
@@ -86,19 +116,6 @@ const BuyingParameters = ({classes, state, handleChange, handleNumberChange, cle
                     onChange={handleNumberChange("householdIncome")}
                     type="number"
                 />
-
-                <TextField
-                    id="pantbrev"
-                    label="Pantbrev"
-                    className={classes.textField}
-                    value={state.pantBrev}
-                    onChange={handleChange("pantBrev")}
-                    margin="normal"
-                    select={true}>
-
-                    <MenuItem key="yes" value={true}>Ja</MenuItem>
-                    <MenuItem key="no" value={false}>Nej</MenuItem>
-                </TextField>
 
                 <TextField
                     id="interestId"
@@ -120,7 +137,7 @@ const BuyingParameters = ({classes, state, handleChange, handleNumberChange, cle
                     type="number"
                 />
             </form>
-            <input type="button" className={"btn btn-danger " + classes.button}  value="Rensa" onClick={(e) => {
+            <input type="button" className={"btn btn-danger " + classes.button} value="Rensa" onClick={(e) => {
                 e.preventDefault();
                 clearInput();
             }}/>

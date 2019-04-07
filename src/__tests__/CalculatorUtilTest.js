@@ -48,6 +48,7 @@ it('get per month', () => {
 });
 
 it('calculate suggested down payment', () => {
-    expect(CalculatorUtil.calculateSuggestedDownPayment(100, 10, 1, 20, 10, 15, true)).toEqual(21.5)
-    expect(CalculatorUtil.calculateSuggestedDownPayment(100, 10, 1, 20, 10, 15, false)).toEqual(23.5)
+    expect(CalculatorUtil.calculateSuggestedDownPayment(100, 10, 1, 20, 10, 15, true, true)).toEqual(21.5);
+    expect(CalculatorUtil.calculateSuggestedDownPayment(100, 10, 1, 20, 10, 15, false, true)).toEqual(23.5);
+    expect(CalculatorUtil.calculateSuggestedDownPayment(100, 10, 1, 20, 10, 15, false, false)).toEqual(25);
 });

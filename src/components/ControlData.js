@@ -10,7 +10,7 @@ import CurrencyFormat from 'react-currency-format';
 import Tooltip from '@material-ui/core/Tooltip';
 import Warning from '@material-ui/icons/Warning'
 
-const ControlData = ({classes, suggestedDownPayment, minimumDownPayment, moneySavedUntilPurchase, loanAmount, loanQuota, maxLoanAmontFromBank, lagfartCost, pantBrevCost, maxLeverageLevel}) => {
+const ControlData = ({classes, suggestedDownPayment, minimumDownPayment, moneySavedUntilPurchase, loanAmount, loanQuota, maxLoanAmontFromBank, lagfartCost, pantBrevCost, maxLeverageLevel, house}) => {
     const red = '';
     const green = '#c8e6c9';
     const orange = '';
@@ -36,7 +36,9 @@ const ControlData = ({classes, suggestedDownPayment, minimumDownPayment, moneySa
                                             thousandSeparator={true} suffix="kr"/>
                         </TableCell>
                     </TableRow>
-                    <TableRow style={{backgroundColor: suggestedDownPayment <= 0 ? red : ''}}>
+                    <TableRow
+                        style={{backgroundColor: suggestedDownPayment <= 0 ? red : ''}}
+                        hidden={!house}>
                         <TableCell>
                             Lagfart
                         </TableCell>
@@ -53,7 +55,7 @@ const ControlData = ({classes, suggestedDownPayment, minimumDownPayment, moneySa
                         </TableCell>
                     </TableRow>
                     <TableRow style={{backgroundColor: suggestedDownPayment <= 0 ? red : ''}}
-                              hidden={pantBrevCost <= 0}>
+                              hidden={pantBrevCost <= 0 || !house}>
                         <TableCell>
                             Pantbrev
                         </TableCell>

@@ -1,8 +1,7 @@
-export const calculateSuggestedDownPayment = (purchaseAmount, cash, moneySavedEachMonth, monthsCount, profitOnSale, moneyLeftAfterPurchase, pantBrevNeeded) => {
-    const lagfartCost = calculateLagfartCost(purchaseAmount);
-    const pantBrevCost = pantBrevNeeded === true ? calculatePantBrevCost(purchaseAmount) : 0;
-    const downPayment = cash + calculateMoneySavedUntilPurchase(moneySavedEachMonth, monthsCount) + profitOnSale - moneyLeftAfterPurchase - pantBrevCost - lagfartCost;
-    return downPayment;
+export const calculateSuggestedDownPayment = (purchaseAmount, cash, moneySavedEachMonth, monthsCount, profitOnSale, moneyLeftAfterPurchase, pantBrevNeeded, house) => {
+    const lagfartCost = house ? calculateLagfartCost(purchaseAmount) : 0;
+    const pantBrevCost = pantBrevNeeded && house ? calculatePantBrevCost(purchaseAmount) : 0;
+    return cash + calculateMoneySavedUntilPurchase(moneySavedEachMonth, monthsCount) + profitOnSale - moneyLeftAfterPurchase - pantBrevCost - lagfartCost;
 };
 
 export const calculateMinimumDownPayment = (purchaseAmount) => purchaseAmount * (15 / 100);
