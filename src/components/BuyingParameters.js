@@ -7,7 +7,6 @@ import Paper from '@material-ui/core/Paper';
 const BuyingParameters = ({classes, state, handleChange, handleNumberChange, clearInput, house}) => {
     return (
         <Paper className={classes.root}>
-            <p className={classes.p}>Parametrar för köp av villa (kr)</p>
             <form className={classes.container} noValidate autoComplete="off">
                 <TextField
                     id="houseId"
@@ -16,8 +15,8 @@ const BuyingParameters = ({classes, state, handleChange, handleNumberChange, cle
                     value={state.house}
                     onChange={handleChange("house")}
                     margin="normal"
-                    select={true}>
-
+                    select={true}
+                >
                     <MenuItem key="Hus" value={true}>Hus</MenuItem>
                     <MenuItem key="Bostadsrätt" value={false}>Bostadsrätt</MenuItem>
                 </TextField>
@@ -30,9 +29,8 @@ const BuyingParameters = ({classes, state, handleChange, handleNumberChange, cle
                     onChange={handleChange("pantBrev")}
                     margin="normal"
                     select={true}
-                    disabled={!state.house}>
-
-
+                    disabled={!state.house}
+                >
                     <MenuItem key="yes" value={true}>Ja</MenuItem>
                     <MenuItem key="no" value={false}>Nej</MenuItem>
                 </TextField>
@@ -79,7 +77,7 @@ const BuyingParameters = ({classes, state, handleChange, handleNumberChange, cle
 
                 <TextField
                     id="savingsMonthsId"
-                    label="Antal månader"
+                    label="Månader för spar"
                     className={classes.textField}
                     margin="normal"
                     value={state.savingsMonths}
@@ -89,7 +87,7 @@ const BuyingParameters = ({classes, state, handleChange, handleNumberChange, cle
 
                 <TextField
                     id="moneyLeftAfterPurchaseId"
-                    label="Pengar kvar efter köp"
+                    label="Summa av kontanter kvar efter köp"
                     className={classes.textField}
                     margin="normal"
                     value={state.moneyLeftAfterPurchase}
