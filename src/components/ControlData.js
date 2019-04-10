@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {withStyles} from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -9,11 +9,20 @@ import Paper from '@material-ui/core/Paper';
 import CurrencyFormat from 'react-currency-format';
 import Tooltip from '@material-ui/core/Tooltip';
 import Warning from '@material-ui/icons/Warning'
+import * as CalculatorUtil from "../util/CalculatorUtil";
+import {BuyingParametersContext} from "../App";
 
-const ControlData = ({classes, suggestedDownPayment, minimumDownPayment, moneySavedUntilPurchase, loanAmount, loanQuota, maxLoanAmontFromBank, lagfartCost, pantBrevCost, maxLeverageLevel, house}) => {
+const ControlData = ({classes}) => {
+    const {state} = useContext(BuyingParametersContext);
     const red = '';
     const green = '#c8e6c9';
     const orange = '';
+    const suggestedDownPayment = CalculatorUtil.calculateSuggestedDownPayment(state.purchaseAmount, state.cash, state.savingsPerMonth, state.savingsMonths, state.profitOnSale, state.moneyLeftAfterPurchase, state.pantBrev);
+    const loanAmount = CalculatorUtil.calculateLoanAmount(state.purchaseAmount, suggestedDownPayment);
+    const moneySavedUntilPurchase = CalculatorUtil.calculateMoneySavedUntilPurchase(state.savingsPerMonth, state.savingsMonths);
+    const lagfartCost = CalculatorUtil.calculateLagfartCost(state.purchaseAmount);
+    const pantBrevCost = CalculatorUtil.calculatePantBrevCost(state.purchaseAmount);
+    const loanQuota = CalculatorUtil.calculateLoanQuota(state.purchaseAmount, suggestedDownPayment);
 
     return (
         <Paper className={classes.root}>
@@ -21,8 +30,8 @@ const ControlData = ({classes, suggestedDownPayment, minimumDownPayment, moneySa
                 <TableHead>
                     <TableRow style={{backgroundColor: suggestedDownPayment >= loanAmount ? green : ''}}>
                         <TableCell>
-                            Beräknade
-                            värden {suggestedDownPayment >= loanAmount ? '(Inga lån behövs!)' : ''}</TableCell>
+                            Beräknade värden {suggestedDownPayment >= loanAmount ? '(Inga lån behövs!)' : ''}
+                        </TableCell>
                         <TableCell></TableCell>
                     </TableRow>
                 </TableHead>
@@ -38,7 +47,7 @@ const ControlData = ({classes, suggestedDownPayment, minimumDownPayment, moneySa
                     </TableRow>
                     <TableRow
                         style={{backgroundColor: suggestedDownPayment <= 0 ? red : ''}}
-                        hidden={!house}>
+                        hidden={!state.house}>
                         <TableCell>
                             Lagfart
                         </TableCell>
@@ -55,7 +64,7 @@ const ControlData = ({classes, suggestedDownPayment, minimumDownPayment, moneySa
                         </TableCell>
                     </TableRow>
                     <TableRow style={{backgroundColor: suggestedDownPayment <= 0 ? red : ''}}
-                              hidden={pantBrevCost <= 0 || !house}>
+                              hidden={pantBrevCost <= 0 || !state.house}>
                         <TableCell>
                             Pantbrev
                         </TableCell>
@@ -72,17 +81,18 @@ const ControlData = ({classes, suggestedDownPayment, minimumDownPayment, moneySa
                         </TableCell>
                     </TableRow>
                     <TableRow
-                        style={{backgroundColor: loanQuota > maxLeverageLevel ? red : ''}}
-                        hidden={isNaN(loanQuota) || suggestedDownPayment >= loanAmount}>
+                        style={{backgroundColor: state.loanQuota > state.maxLeverageLevel ? red : ''}}
+                        hidden={isNaN(state.loanQuota) || suggestedDownPayment >= loanAmount}>
                         <TableCell>
                             Lånekvot
                         </TableCell>
                         <TableCell>
-                            <CurrencyFormat value={loanQuota.toFixed(2)} displayType={'text'} suffix="%"/>
+                            <CurrencyFormat value={loanQuota.toFixed(2)} displayType={'text'}
+                                            suffix="%"/>
                             <Tooltip style={{textAlign: "top"}}
                                      title="Lånekvoten är större än din maximala lånekvot"
                                      interactive={true} leaveDelay={800} placement={"top"}
-                                     hidden={maxLeverageLevel > loanQuota}>
+                                     hidden={state.maxLeverageLevel > state.loanQuota}>
                                 <Warning/>
                             </Tooltip>
                         </TableCell>
@@ -97,7 +107,7 @@ const ControlData = ({classes, suggestedDownPayment, minimumDownPayment, moneySa
                             <Tooltip style={{textAlign: "top"}}
                                      title="Belåningen är större än 4.5 gånger årsinkomsten för hushållet och ökar därför amorteringskravet med 1%"
                                      interactive={true} leaveDelay={800} placement={"top"}
-                                     hidden={loanAmount < maxLoanAmontFromBank}>
+                                     hidden={loanAmount < state.maxLoanAmontFromBank}>
                                 <Warning/>
                             </Tooltip>
                         </TableCell>
@@ -130,9 +140,7 @@ const styles = theme => ({
         marginTop: theme.spacing.unit * 3,
         overflowX: 'auto',
     },
-    table: {
-
-    },
+    table: {},
 });
 
 export default withStyles(styles)(ControlData)
