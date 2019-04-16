@@ -1,10 +1,18 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {withStyles} from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from "@material-ui/core/MenuItem";
 import Paper from '@material-ui/core/Paper';
+import {BuyingParametersContext} from "../App";
 
-const BuyingParameters = ({classes, state, handleChange, handleNumberChange, clearInput, house}) => {
+const BuyingParameters = ({classes}) => {
+    const {state, dispatch} = useContext(BuyingParametersContext);
+    const updateField = fieldName => event => dispatch({
+        'type': 'CALCULATE',
+        'fieldName': fieldName,
+        'value': event.target.value
+    });
+
     return (
         <Paper className={classes.root}>
             <form className={classes.container} noValidate autoComplete="off">
@@ -13,7 +21,7 @@ const BuyingParameters = ({classes, state, handleChange, handleNumberChange, cle
                     label="Typ av bostad"
                     className={classes.textField}
                     value={state.house}
-                    onChange={handleChange("house")}
+                    onChange={updateField('house')}
                     margin="normal"
                     select={true}
                 >
@@ -26,11 +34,10 @@ const BuyingParameters = ({classes, state, handleChange, handleNumberChange, cle
                     label="Pantbrev"
                     className={classes.textField + " hidden"}
                     value={state.pantBrev}
-                    onChange={handleChange("pantBrev")}
+                    onChange={updateField("pantBrev")}
                     margin="normal"
                     select={true}
-                    disabled={!state.house}
-                >
+                    disabled={!state.house}>
                     <MenuItem key="yes" value={true}>Ja</MenuItem>
                     <MenuItem key="no" value={false}>Nej</MenuItem>
                 </TextField>
@@ -40,7 +47,7 @@ const BuyingParameters = ({classes, state, handleChange, handleNumberChange, cle
                     label="Köpesumma"
                     className={classes.textField}
                     value={state.purchaseAmount}
-                    onChange={handleNumberChange("purchaseAmount")}
+                    onChange={updateField("purchaseAmount")}
                     margin="normal"
                     type="number"
                 />
@@ -50,7 +57,7 @@ const BuyingParameters = ({classes, state, handleChange, handleNumberChange, cle
                     label="Driftkostnader (hyra, el etc)"
                     className={classes.textField}
                     value={state.operationCosts}
-                    onChange={handleNumberChange("operationCosts")}
+                    onChange={updateField("operationCosts")}
                     margin="normal"
                     type="number"
                 />
@@ -60,7 +67,7 @@ const BuyingParameters = ({classes, state, handleChange, handleNumberChange, cle
                     label="Kontanter för köp"
                     className={classes.textField}
                     value={state.cash}
-                    onChange={handleNumberChange("cash")}
+                    onChange={updateField("cash")}
                     margin="normal"
                     type="number"
                 />
@@ -71,7 +78,7 @@ const BuyingParameters = ({classes, state, handleChange, handleNumberChange, cle
                     className={classes.textField}
                     margin="normal"
                     value={state.savingsPerMonth}
-                    onChange={handleNumberChange("savingsPerMonth")}
+                    onChange={updateField("savingsPerMonth")}
                     type="number"
                 />
 
@@ -81,7 +88,7 @@ const BuyingParameters = ({classes, state, handleChange, handleNumberChange, cle
                     className={classes.textField}
                     margin="normal"
                     value={state.savingsMonths}
-                    onChange={handleNumberChange("savingsMonths")}
+                    onChange={updateField("savingsMonths")}
                     type="number"
                 />
 
@@ -91,7 +98,7 @@ const BuyingParameters = ({classes, state, handleChange, handleNumberChange, cle
                     className={classes.textField}
                     margin="normal"
                     value={state.moneyLeftAfterPurchase}
-                    onChange={handleNumberChange("moneyLeftAfterPurchase")}
+                    onChange={updateField("moneyLeftAfterPurchase")}
                     type="number"
                 />
 
@@ -101,7 +108,7 @@ const BuyingParameters = ({classes, state, handleChange, handleNumberChange, cle
                     className={classes.textField}
                     margin="normal"
                     value={state.profitOnSale}
-                    onChange={handleNumberChange("profitOnSale")}
+                    onChange={updateField("profitOnSale")}
                     type="number"
                 />
 
@@ -111,7 +118,7 @@ const BuyingParameters = ({classes, state, handleChange, handleNumberChange, cle
                     className={classes.textField}
                     margin="normal"
                     value={state.householdIncome}
-                    onChange={handleNumberChange("householdIncome")}
+                    onChange={updateField("householdIncome")}
                     type="number"
                 />
 
@@ -121,7 +128,7 @@ const BuyingParameters = ({classes, state, handleChange, handleNumberChange, cle
                     className={classes.textField}
                     margin="normal"
                     value={state.interest}
-                    onChange={handleNumberChange("interest")}
+                    onChange={updateField("interest")}
                     type="number"
                 />
 
@@ -131,13 +138,13 @@ const BuyingParameters = ({classes, state, handleChange, handleNumberChange, cle
                     className={classes.textField}
                     margin="normal"
                     value={state.maxLeverageLevel}
-                    onChange={handleNumberChange("maxLeverageLevel")}
+                    onChange={updateField("maxLeverageLevel")}
                     type="number"
                 />
             </form>
             <input type="button" className={"btn btn-danger " + classes.button} value="Rensa" onClick={(e) => {
                 e.preventDefault();
-                clearInput();
+                dispatch({'type': 'CLEAR'});
             }}/>
         </Paper>
     )
