@@ -10,7 +10,7 @@ import CurrencyFormat from 'react-currency-format';
 import Tooltip from '@material-ui/core/Tooltip';
 import Info from '@material-ui/icons/Info';
 import * as CalculatorUtil from "../util/CalculatorUtil";
-import {BuyingParametersContext} from "../App";
+import {BuyingParametersContext} from "../context/Context";
 
 const OngoingCosts = ({classes}) => {
     const {state} = useContext(BuyingParametersContext);

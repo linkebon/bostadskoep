@@ -10,7 +10,7 @@ import CurrencyFormat from 'react-currency-format';
 import Tooltip from '@material-ui/core/Tooltip';
 import Warning from '@material-ui/icons/Warning'
 import * as CalculatorUtil from "../util/CalculatorUtil";
-import {BuyingParametersContext} from "../App";
+import {BuyingParametersContext} from "../context/Context";
 
 const ControlData = ({classes}) => {
     const {state} = useContext(BuyingParametersContext);

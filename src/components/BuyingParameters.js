@@ -3,15 +3,17 @@ import {withStyles} from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from "@material-ui/core/MenuItem";
 import Paper from '@material-ui/core/Paper';
-import {BuyingParametersContext} from "../App";
+import {BuyingParametersContext} from "../context/Context";
 
 const BuyingParameters = ({classes}) => {
     const {state, dispatch} = useContext(BuyingParametersContext);
-    const updateField = fieldName => event => dispatch({
-        'type': 'CALCULATE',
-        'fieldName': fieldName,
-        'value': event.target.value
-    });
+    const updateField = fieldName => event => {
+        dispatch({
+            'type': 'CALCULATE',
+            'fieldName': fieldName,
+            'value': event.target.value
+        });
+    };
 
     return (
         <Paper className={classes.root}>
