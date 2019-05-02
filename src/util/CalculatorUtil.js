@@ -12,7 +12,11 @@ export const calculateLagfartCost = purchaseAmount => purchaseAmount * (1.5 / 10
 
 export const calculatePantBrevCost = purchaseAmount => purchaseAmount * (2 / 100);
 
-export const calculateLoanAmount = (purchaseAmount, downPayment) => downPayment > 0 ? purchaseAmount - downPayment : purchaseAmount;
+export const calculateLoanAmount = (purchaseAmount, downPayment, house, pantBrevNeeded) => {
+    const lagfartCost = house ? calculateLagfartCost(purchaseAmount) : 0;
+    const pantBrevCost = pantBrevNeeded && house ? calculatePantBrevCost(purchaseAmount) : 0;
+    return downPayment > 0 ? purchaseAmount - downPayment : purchaseAmount;
+};
 
 export const calculateLoanQuota = (purchaseAmount, downPayment) => (((purchaseAmount - downPayment) / purchaseAmount) * 100);
 

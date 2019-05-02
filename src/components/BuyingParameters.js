@@ -96,7 +96,7 @@ const BuyingParameters = ({classes}) => {
 
                 <TextField
                     id="moneyLeftAfterPurchaseId"
-                    label="Summa av kontanter kvar efter köp"
+                    label="Kontanter kvar efter köp"
                     className={classes.textField}
                     margin="normal"
                     value={state.moneyLeftAfterPurchase}
@@ -106,7 +106,7 @@ const BuyingParameters = ({classes}) => {
 
                 <TextField
                     id="profitOnSale"
-                    label="Förväntad vinst på egen försäljning"
+                    label="Vinst på egen försäljning"
                     className={classes.textField}
                     margin="normal"
                     value={state.profitOnSale}

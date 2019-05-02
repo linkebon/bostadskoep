@@ -17,8 +17,8 @@ const ControlData = ({classes}) => {
     const red = '';
     const green = '#c8e6c9';
     const orange = '';
-    const suggestedDownPayment = CalculatorUtil.calculateSuggestedDownPayment(state.purchaseAmount, state.cash, state.savingsPerMonth, state.savingsMonths, state.profitOnSale, state.moneyLeftAfterPurchase, state.pantBrev);
-    const loanAmount = CalculatorUtil.calculateLoanAmount(state.purchaseAmount, suggestedDownPayment);
+    const suggestedDownPayment = CalculatorUtil.calculateSuggestedDownPayment(state.purchaseAmount, state.cash, state.savingsPerMonth, state.savingsMonths, state.profitOnSale, state.moneyLeftAfterPurchase, state.pantBrev, state.house);
+    const loanAmount = CalculatorUtil.calculateLoanAmount(state.purchaseAmount, suggestedDownPayment, state.house, state.pantBrev);
     const moneySavedUntilPurchase = CalculatorUtil.calculateMoneySavedUntilPurchase(state.savingsPerMonth, state.savingsMonths);
     const lagfartCost = CalculatorUtil.calculateLagfartCost(state.purchaseAmount);
     const pantBrevCost = CalculatorUtil.calculatePantBrevCost(state.purchaseAmount);
@@ -28,9 +28,9 @@ const ControlData = ({classes}) => {
         <Paper className={classes.root}>
             <Table className={classes.table}>
                 <TableHead>
-                    <TableRow style={{backgroundColor: suggestedDownPayment >= loanAmount ? green : ''}}>
+                    <TableRow style={{backgroundColor: loanAmount <= 0 ? green : ''}}>
                         <TableCell>
-                            Beräknade värden {suggestedDownPayment >= loanAmount ? '(Inga lån behövs!)' : ''}
+                            Beräknade värden {loanAmount <= 0 ? '(Inga lån behövs!)' : ''}
                         </TableCell>
                         <TableCell></TableCell>
                     </TableRow>
@@ -64,7 +64,7 @@ const ControlData = ({classes}) => {
                         </TableCell>
                     </TableRow>
                     <TableRow style={{backgroundColor: suggestedDownPayment <= 0 ? red : ''}}
-                              hidden={pantBrevCost <= 0 || !state.house}>
+                              hidden={pantBrevCost <= 0 || !state.house || !state.pantBrev}>
                         <TableCell>
                             Pantbrev
                         </TableCell>
@@ -113,19 +113,37 @@ const ControlData = ({classes}) => {
                         </TableCell>
                     </TableRow>
                     <TableRow style={{backgroundColor: suggestedDownPayment <= 0 ? orange : ''}}>
-                        <TableCell style={{fontWeight: 'bold'}}>
-                            Möjlig kontantinsats
+                        <TableCell>
+                            <div style={{fontWeight: 'bold'}}>
+                                Möjlig kontantinsats
+                            </div>
+                            <div className='text-muted' style={{fontSize: '10px', marginLeft: '2%'}}>
+                                Kontanter för köp (+{state.cash})
+                                <br/>
+                                Sparande tills köp (+{moneySavedUntilPurchase})
+                                <br/>
+                                Vinst på försäljning (+{state.profitOnSale})
+                                <br/>
+                                Kontanter kvar efter köp (-{state.moneyLeftAfterPurchase})
+                                <br/>
+                                Pantbrev (-{pantBrevCost})
+                                <br/>
+                                Lagfart (-{lagfartCost})
+
+                            </div>
                         </TableCell>
-                        <TableCell style={{fontWeight: 'bold'}}>
-                            <CurrencyFormat value={Math.round(suggestedDownPayment)} displayType={'text'}
-                                            thousandSeparator={true}
-                                            suffix="kr"/>
-                            <Tooltip style={{textAlign: "top"}}
-                                     title="Kostnaderna för pantbrev, lagfart, pengarna som ska vara kvar efter köp etc är för stora så kontantinsatsen är mindre än 0."
-                                     interactive={true} leaveDelay={800} placement={"top"}
-                                     hidden={suggestedDownPayment > 0}>
-                                <Warning/>
-                            </Tooltip>
+                        <TableCell style={{verticalAlign: 'top'}}>
+                            <div style={{fontWeight: 'bold'}}>
+                                <CurrencyFormat value={Math.round(suggestedDownPayment)} displayType={'text'}
+                                                thousandSeparator={true}
+                                                suffix="kr"/>
+                                <Tooltip style={{textAlign: "top"}}
+                                         title="Kostnaderna för pantbrev, lagfart, pengarna som ska vara kvar efter köp etc är för stora så kontantinsatsen är mindre än 0."
+                                         interactive={true} leaveDelay={800} placement={"top"}
+                                         hidden={suggestedDownPayment > 0}>
+                                    <Warning/>
+                                </Tooltip>
+                            </div>
                         </TableCell>
                     </TableRow>
                 </TableBody>
