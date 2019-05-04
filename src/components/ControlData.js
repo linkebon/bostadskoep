@@ -125,11 +125,12 @@ const ControlData = ({classes}) => {
                                 Vinst på försäljning (+{state.profitOnSale})
                                 <br/>
                                 Kontanter kvar efter köp (-{state.moneyLeftAfterPurchase})
-                                <br/>
-                                Pantbrev (-{pantBrevCost})
-                                <br/>
+                            </div>
+                            <div className='text-muted' style={{fontSize: '10px', marginLeft: '2%'}} hidden={!state.house}>
                                 Lagfart (-{lagfartCost})
-
+                            </div>
+                            <div className='text-muted' style={{fontSize: '10px', marginLeft: '2%'}} hidden={!state.house || !state.pantBrev}>
+                                Pantbrev (-{pantBrevCost})
                             </div>
                         </TableCell>
                         <TableCell style={{verticalAlign: 'top'}}>
