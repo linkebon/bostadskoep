@@ -39,7 +39,7 @@ const App = ({classes}) => {
                     </Grid>
                     <Grid item xs={12}>
                         <Copyright/>
-                        <a href="https://www.linkedin.com/in/staffan-holmgren-0b39aa44/"
+                        <a href="http://80.216.91.89:9000"
                            style={{verticalAlign: "middle"}}
                            className="text-muted"
                            target="_blank"
