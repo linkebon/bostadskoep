@@ -22,7 +22,7 @@ const ControlData = ({classes}) => {
     const lagfartCost = CalculatorUtil.calculateLagfartCost(state.purchaseAmount);
     const pantBrevCost = CalculatorUtil.calculatePantBrevCost(state.purchaseAmount);
     const loanQuota = CalculatorUtil.calculateLoanQuota(state.purchaseAmount, suggestedDownPayment);
-    const loanIsNeeded = loanAmount >= 0 && suggestedDownPayment > 0;
+    const loanIsNeeded = loanAmount >= 0;
     const increaseAmortizationBecauseOfLoanAmount = loanAmount > CalculatorUtil.calculateMaxLoanFromBankFourPointFive(state.householdIncome)
 
     return (
