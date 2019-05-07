@@ -1,6 +1,7 @@
 import React, {useEffect, useReducer, useState} from 'react';
 import Grid from '@material-ui/core/Grid';
 import {withStyles} from '@material-ui/core/styles';
+import Copyright from '@material-ui/icons/Copyright'
 import './App.css';
 import BuyingParameters from "./components/BuyingParameters";
 import ControlData from "./components/ControlData";
@@ -17,10 +18,10 @@ const App = ({classes}) => {
             setLoadLocalStorage(false);
         }
     });
-    return <div style={{marginTop: '1%', marginBottom: '3%'}} className="container">
+    return <div style={{marginTop: '1%', marginBottom: '1%'}} className="container">
         <div className={classes.root}>
             <div className="jumbotron" style={{marginBottom: '0%'}}>
-                <h1 className="display-4">Bostadsköp - en bostadsköpsuträknare</h1>
+                <h1 className="display-4">BK - en bostadsköpsuträknare</h1>
                 <p>Ett användbart hjälpmedel för dig som ska köpa en ny bostad och som hjälper dig ta bättre beslut!
                 </p>
             </div>
@@ -37,9 +38,12 @@ const App = ({classes}) => {
                         <OngoingCosts/>
                     </Grid>
                     <Grid item xs={12}>
-                        <a href="https://www.linkedin.com/in/staffan-holmgren-0b39aa44/" className="text-muted"
+                        <Copyright/>
+                        <a href="https://www.linkedin.com/in/staffan-holmgren-0b39aa44/"
+                           style={{verticalAlign: "middle"}}
+                           className="text-muted"
                            target="_blank"
-                           rel="noopener noreferrer">Linkedin</a>
+                           rel="noopener noreferrer">linkebon</a>
                     </Grid>
                 </BuyingParametersContext.Provider>
             </Grid>
