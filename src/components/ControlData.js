@@ -159,7 +159,6 @@ const styles = theme => ({
         marginTop: theme.spacing.unit * 3,
         overflowX: 'auto',
     },
-    table: {},
 });
 
 export default withStyles(styles)(ControlData)
