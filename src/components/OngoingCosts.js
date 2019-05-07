@@ -14,15 +14,7 @@ import {BuyingParametersContext} from "../context/Context";
 
 const OngoingCosts = ({classes}) => {
     const {state} = useContext(BuyingParametersContext);
-    const suggestedDownPayment = CalculatorUtil.calculateSuggestedDownPayment(
-        state.purchaseAmount,
-        state.cash,
-        state.savingsPerMonth,
-        state.savingsMonths,
-        state.profitOnSale,
-        state.moneyLeftAfterPurchase,
-        state.pantBrev);
-
+    const suggestedDownPayment = CalculatorUtil.calculateSuggestedDownPayment(state.purchaseAmount, state.cash, state.savingsPerMonth, state.savingsMonths, state.profitOnSale, state.moneyLeftAfterPurchase, state.pantBrev);
     const loanAmount = CalculatorUtil.calculateLoanAmount(state.purchaseAmount, suggestedDownPayment);
     const interestCost = CalculatorUtil.getPerMonth(CalculatorUtil.calculateInterestCost(loanAmount, state.interest));
     const interestCostTaxReduction = CalculatorUtil.getPerMonth(CalculatorUtil.calculateInterestCostWithReduction(loanAmount, state.interest));
@@ -44,11 +36,11 @@ const OngoingCosts = ({classes}) => {
                             Räntekostnader
                         </TableCell>
                         <TableCell>
-                            <CurrencyFormat value={Math.round(interestCost)} displayType={'text'}
+                            <CurrencyFormat value={interestCost.toFixed(2)} displayType={'text'}
                                             thousandSeparator={true}
                                             suffix="kr"/>
                             <Tooltip style={{textAlign: "top"}}
-                                     title={`Med ränteavdrag blir räntekostnaden: ${Math.round(interestCostTaxReduction)} kr`}
+                                     title={`Med ränteavdrag blir räntekostnaden: ${interestCostTaxReduction.toFixed(2)} kr`}
                                      interactive={true} leaveDelay={800} placement={"top"}>
                                 <Info/>
                             </Tooltip>
@@ -59,7 +51,7 @@ const OngoingCosts = ({classes}) => {
                             Amortering
                         </TableCell>
                         <TableCell>
-                            <CurrencyFormat value={Math.round(amortization)} displayType={'text'}
+                            <CurrencyFormat value={amortization.toFixed(2)} displayType={'text'}
                                             thousandSeparator={true}
                                             suffix="kr"/>
                         </TableCell>
@@ -69,7 +61,7 @@ const OngoingCosts = ({classes}) => {
                             Driftkostnader (el, vatten, hyra etc)
                         </TableCell>
                         <TableCell>
-                            <CurrencyFormat value={Math.round(operationCosts)} displayType={'text'}
+                            <CurrencyFormat value={operationCosts.toFixed(2)} displayType={'text'}
                                             thousandSeparator={true}
                                             suffix="kr"/>
                         </TableCell>
@@ -78,7 +70,7 @@ const OngoingCosts = ({classes}) => {
                         <TableCell style={{fontWeight: 'bold'}}>Totalt per månad</TableCell>
                         <TableCell style={{fontWeight: 'bold'}}>
                             <CurrencyFormat
-                                value={Math.round(replaceNanWithZero(operationCosts) + replaceNanWithZero(interestCost) + replaceNanWithZero(amortization))}
+                                value={(replaceNanWithZero(operationCosts) + replaceNanWithZero(interestCost) + replaceNanWithZero(amortization)).toFixed(2)}
                                 displayType={'text'}
                                 thousandSeparator={true} suffix="kr"/>
                         </TableCell>
