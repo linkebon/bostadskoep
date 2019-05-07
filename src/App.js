@@ -8,7 +8,6 @@ import OngoingCosts from "./components/OngoingCosts";
 import {buyingParametersReducer, initialBuyingParameters} from "./context/Reducers";
 import {BuyingParametersContext} from './context/Context'
 
-
 const App = ({classes}) => {
     const [state, dispatch] = useReducer(buyingParametersReducer, initialBuyingParameters);
     const [loadLocalStorage, setLoadLocalStorage] = useState(true);
@@ -20,6 +19,12 @@ const App = ({classes}) => {
     });
     return <div style={{marginTop: '1%', marginBottom: '3%'}} className="container">
         <div className={classes.root}>
+            <div className="jumbotron" style={{marginBottom: '0%'}}>
+                <h1 className="display-4">Bostadsköp - en bostadsköpsuträknare</h1>
+                <p>Ett användbart hjälpmedel för dig som ska köpa en ny bostad och som hjälper dig ta bättre beslut!
+                </p>
+            </div>
+
             <Grid container spacing={24}>
                 <BuyingParametersContext.Provider value={{state, dispatch}}>
                     <Grid item xs={12}>
