@@ -15,7 +15,7 @@ const App = () => {
             setLoadLocalStorage(false);
         }
     });
-    return <div style={{width: '55%', marginTop: '1%', marginBottom: '3%'}} className="container">
+    return <div style={{width: '80%', marginTop: '1%', marginBottom: '3%'}} className="container">
         <BuyingParametersContext.Provider value={{state, dispatch}}>
             <BuyingParameters/>
             <ControlData/>

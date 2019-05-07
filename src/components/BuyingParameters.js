@@ -55,42 +55,12 @@ const BuyingParameters = ({classes}) => {
                 />
 
                 <TextField
-                    id="operationCostsId"
-                    label="Driftkostnader (hyra, el etc)"
-                    className={classes.textField}
-                    value={state.operationCosts}
-                    onChange={updateField("operationCosts")}
-                    margin="normal"
-                    type="number"
-                />
-
-                <TextField
                     id="cashId"
                     label="Kontanter för köp"
                     className={classes.textField}
                     value={state.cash}
                     onChange={updateField("cash")}
                     margin="normal"
-                    type="number"
-                />
-
-                <TextField
-                    id="savingsPerMonthId"
-                    label="Sparande per månad"
-                    className={classes.textField}
-                    margin="normal"
-                    value={state.savingsPerMonth}
-                    onChange={updateField("savingsPerMonth")}
-                    type="number"
-                />
-
-                <TextField
-                    id="savingsMonthsId"
-                    label="Månader för spar"
-                    className={classes.textField}
-                    margin="normal"
-                    value={state.savingsMonths}
-                    onChange={updateField("savingsMonths")}
                     type="number"
                 />
 
@@ -115,16 +85,6 @@ const BuyingParameters = ({classes}) => {
                 />
 
                 <TextField
-                    id="householdIncomeId"
-                    label="Hushållets totala inkomster per år (brutto)"
-                    className={classes.textField}
-                    margin="normal"
-                    value={state.householdIncome}
-                    onChange={updateField("householdIncome")}
-                    type="number"
-                />
-
-                <TextField
                     id="interestId"
                     label="Ränta lån (%)"
                     className={classes.textField}
@@ -143,6 +103,47 @@ const BuyingParameters = ({classes}) => {
                     onChange={updateField("maxLeverageLevel")}
                     type="number"
                 />
+
+                <TextField
+                    id="householdIncomeId"
+                    label="Hushållets totala inkomster per år (brutto)"
+                    className={classes.textField}
+                    margin="normal"
+                    value={state.householdIncome}
+                    onChange={updateField("householdIncome")}
+                    type="number"
+                />
+
+                <TextField
+                    id="savingsPerMonthId"
+                    label="Sparande per månad"
+                    className={classes.textField}
+                    margin="normal"
+                    value={state.savingsPerMonth}
+                    onChange={updateField("savingsPerMonth")}
+                    type="number"
+                />
+
+                <TextField
+                    id="savingsMonthsId"
+                    label="Tid kvar till köp (månader)"
+                    className={classes.textField}
+                    margin="normal"
+                    value={state.savingsMonths}
+                    onChange={updateField("savingsMonths")}
+                    type="number"
+                />
+
+                <TextField
+                    id="operationCostsId"
+                    label="Driftkostnader (hyra, el etc)"
+                    className={classes.textField}
+                    value={state.operationCosts}
+                    onChange={updateField("operationCosts")}
+                    margin="normal"
+                    type="number"
+                />
+
             </form>
             <input type="button" className={"btn btn-danger " + classes.button} value="Rensa" onClick={(e) => {
                 e.preventDefault();
