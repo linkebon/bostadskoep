@@ -21,7 +21,7 @@ const App = ({classes}) => {
     return <div style={{marginTop: '1%', marginBottom: '1%'}} className="container">
         <div className={classes.root}>
             <div className="jumbotron" style={{marginBottom: '0%', overflowX: 'auto'}}>
-                <h1 className="display-4">BK - en bostadsköpsuträknare</h1>
+                <h1 className="display-4">BK</h1>
                 <p>Ett användbart hjälpmedel för dig som ska köpa en ny bostad och som hjälper dig ta bättre beslut!
                 </p>
             </div>
