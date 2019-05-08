@@ -31,10 +31,10 @@ const App = ({classes}) => {
                     <Grid item xs={12}>
                         <BuyingParameters/>
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs>
                         <ControlData/>
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs>
                         <OngoingCosts/>
                     </Grid>
                     <Grid item xs={12}>
