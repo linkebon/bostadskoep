@@ -60,7 +60,10 @@ const ControlData = ({classes}) => {
                         <TableCell>
                             <Tooltip style={{textAlign: "top"}}
                                      title="Lagfart behöver betalas med kontanter och det finns inte tillräckligt med kontanter"
-                                     interactive={true} leaveDelay={800} placement={"top"}
+                                     interactive={true}
+                                     leaveDelay={800}
+                                     placement={"top"}
+                                     enterTouchDelay={150}
                                      hidden={suggestedDownPayment > 0}>
                                 <Warning/>
                             </Tooltip>
@@ -79,7 +82,10 @@ const ControlData = ({classes}) => {
                         <TableCell>
                             <Tooltip style={{textAlign: "top"}}
                                      title="Pantbrev behöver betalas med kontanter och det finns inte tillräckligt med kontanter"
-                                     interactive={true} leaveDelay={800} placement={"top"}
+                                     interactive={true}
+                                     leaveDelay={800}
+                                     placement={"top"}
+                                     enterTouchDelay={150}
                                      hidden={suggestedDownPayment > 0}>
                                 <Warning/>
                             </Tooltip>
@@ -95,7 +101,10 @@ const ControlData = ({classes}) => {
                         <TableCell>
                             <Tooltip style={{textAlign: "top"}}
                                      title="Lånekvoten är större än din maximala lånekvot"
-                                     interactive={true} leaveDelay={800} placement={"top"}
+                                     interactive={true}
+                                     leaveDelay={800}
+                                     placement={"top"}
+                                     enterTouchDelay={150}
                                      hidden={loanQuota < state.maxLeverageLevel}>
                                 <Warning/>
                             </Tooltip>
@@ -114,7 +123,10 @@ const ControlData = ({classes}) => {
                         <TableCell>
                             <Tooltip style={{textAlign: "top"}}
                                      title="Belåningen är större än 4.5 gånger årsinkomsten för hushållet och ökar därför amorteringskravet med 1%"
-                                     interactive={true} leaveDelay={800} placement={"top"}
+                                     interactive={true}
+                                     leaveDelay={800}
+                                     placement={"top"}
+                                     enterTouchDelay={150}
                                      hidden={!increaseAmortizationBecauseOfLoanAmount}>
                                 <Warning/>
                             </Tooltip>
@@ -153,7 +165,10 @@ const ControlData = ({classes}) => {
                         <TableCell>
                             <Tooltip style={{textAlign: "top"}}
                                      title="Kostnaderna för pantbrev, lagfart, pengarna som ska vara kvar efter köp etc är för stora så kontantinsatsen är mindre än 0."
-                                     interactive={true} leaveDelay={800} placement={"top"}
+                                     interactive={true}
+                                     leaveDelay={800}
+                                     placement={"top"}
+                                     enterTouchDelay={150}
                                      hidden={suggestedDownPayment > 0}>
                                 <Warning/>
                             </Tooltip>

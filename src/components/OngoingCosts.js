@@ -44,7 +44,10 @@ const OngoingCosts = ({classes}) => {
                         <TableCell>
                             <Tooltip style={{textAlign: "top"}}
                                      title={`Med ränteavdrag blir räntekostnaden: ${interestCostTaxReduction.toFixed(2)} kr`}
-                                     interactive={true} leaveDelay={800} placement={"top"}>
+                                     interactive={true}
+                                     leaveDelay={800}
+                                     enterTouchDelay={150}
+                                     placement={"top"}>
                                 <Info/>
                             </Tooltip>
                         </TableCell>
