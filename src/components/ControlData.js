@@ -34,6 +34,7 @@ const ControlData = ({classes}) => {
                             Beräknade värden för köp{!loanIsNeeded ? '(Inga lån behövs!)' : ''}
                         </TableCell>
                         <TableCell></TableCell>
+                        <TableCell></TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -41,19 +42,22 @@ const ControlData = ({classes}) => {
                         <TableCell>
                             Pengar sparade tills köp (inräknat i möjlig kontantinsats)
                         </TableCell>
-                        <TableCell>
+                        <TableCell style={{textAlign: 'right'}}>
                             <CurrencyFormat value={Math.round(moneySavedUntilPurchase)} displayType={'text'}
                                             thousandSeparator={true} suffix="kr"/>
                         </TableCell>
+                        <TableCell></TableCell>
                     </TableRow>
                     <TableRow hidden={!state.house}>
                         <TableCell>
                             Lagfart
                         </TableCell>
-                        <TableCell>
+                        <TableCell style={{textAlign: 'right'}}>
                             <CurrencyFormat value={Math.round(lagfartCost)} displayType={'text'}
                                             thousandSeparator={true}
                                             suffix="kr"/>
+                        </TableCell>
+                        <TableCell>
                             <Tooltip style={{textAlign: "top"}}
                                      title="Lagfart behöver betalas med kontanter och det finns inte tillräckligt med kontanter"
                                      interactive={true} leaveDelay={800} placement={"top"}
@@ -67,10 +71,12 @@ const ControlData = ({classes}) => {
                         <TableCell>
                             Pantbrev
                         </TableCell>
-                        <TableCell>
+                        <TableCell style={{textAlign: 'right'}}>
                             <CurrencyFormat value={Math.round(pantBrevCost)} displayType={'text'}
                                             thousandSeparator={true}
                                             suffix="kr"/>
+                        </TableCell>
+                        <TableCell>
                             <Tooltip style={{textAlign: "top"}}
                                      title="Pantbrev behöver betalas med kontanter och det finns inte tillräckligt med kontanter"
                                      interactive={true} leaveDelay={800} placement={"top"}
@@ -83,8 +89,10 @@ const ControlData = ({classes}) => {
                         <TableCell>
                             Lånekvot
                         </TableCell>
-                        <TableCell>
+                        <TableCell style={{textAlign: 'right'}}>
                             <CurrencyFormat value={loanQuota.toFixed(2)} displayType={'text'} suffix="%"/>
+                        </TableCell>
+                        <TableCell>
                             <Tooltip style={{textAlign: "top"}}
                                      title="Lånekvoten är större än din maximala lånekvot"
                                      interactive={true} leaveDelay={800} placement={"top"}
@@ -97,11 +105,13 @@ const ControlData = ({classes}) => {
                         <TableCell style={{fontWeight: 'bold'}}>
                             Lånesumma
                         </TableCell>
-                        <TableCell style={{fontWeight: 'bold'}}>
+                        <TableCell style={{fontWeight: 'bold', textAlign: 'right'}}>
                             <CurrencyFormat value={Math.round(loanAmount)}
                                             displayType={'text'}
                                             thousandSeparator={true}
                                             suffix="kr"/>
+                        </TableCell>
+                        <TableCell>
                             <Tooltip style={{textAlign: "top"}}
                                      title="Belåningen är större än 4.5 gånger årsinkomsten för hushållet och ökar därför amorteringskravet med 1%"
                                      interactive={true} leaveDelay={800} placement={"top"}
@@ -133,18 +143,20 @@ const ControlData = ({classes}) => {
                                 Pantbrev (-{pantBrevCost})
                             </div>
                         </TableCell>
-                        <TableCell style={{verticalAlign: 'top'}}>
+                        <TableCell style={{verticalAlign: 'top', textAlign: 'right'}}>
                             <div style={{fontWeight: 'bold'}}>
                                 <CurrencyFormat value={Math.round(suggestedDownPayment)} displayType={'text'}
                                                 thousandSeparator={true}
                                                 suffix="kr"/>
-                                <Tooltip style={{textAlign: "top"}}
-                                         title="Kostnaderna för pantbrev, lagfart, pengarna som ska vara kvar efter köp etc är för stora så kontantinsatsen är mindre än 0."
-                                         interactive={true} leaveDelay={800} placement={"top"}
-                                         hidden={suggestedDownPayment > 0}>
-                                    <Warning/>
-                                </Tooltip>
                             </div>
+                        </TableCell>
+                        <TableCell>
+                            <Tooltip style={{textAlign: "top"}}
+                                     title="Kostnaderna för pantbrev, lagfart, pengarna som ska vara kvar efter köp etc är för stora så kontantinsatsen är mindre än 0."
+                                     interactive={true} leaveDelay={800} placement={"top"}
+                                     hidden={suggestedDownPayment > 0}>
+                                <Warning/>
+                            </Tooltip>
                         </TableCell>
                     </TableRow>
                 </TableBody>
@@ -159,6 +171,9 @@ const styles = theme => ({
         marginTop: theme.spacing.unit * 3,
         overflowX: 'auto',
     },
+    table: {
+
+    }
 });
 
 export default withStyles(styles)(ControlData)

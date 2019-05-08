@@ -28,6 +28,7 @@ const OngoingCosts = ({classes}) => {
                     <TableRow>
                         <TableCell>Löpande månadsutgifter</TableCell>
                         <TableCell></TableCell>
+                        <TableCell></TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -35,10 +36,12 @@ const OngoingCosts = ({classes}) => {
                         <TableCell>
                             Räntekostnader
                         </TableCell>
-                        <TableCell>
+                        <TableCell style={{textAlign: 'right'}}>
                             <CurrencyFormat value={interestCost.toFixed(2)} displayType={'text'}
                                             thousandSeparator={true}
                                             suffix="kr"/>
+                        </TableCell>
+                        <TableCell>
                             <Tooltip style={{textAlign: "top"}}
                                      title={`Med ränteavdrag blir räntekostnaden: ${interestCostTaxReduction.toFixed(2)} kr`}
                                      interactive={true} leaveDelay={800} placement={"top"}>
@@ -50,30 +53,33 @@ const OngoingCosts = ({classes}) => {
                         <TableCell>
                             Amortering
                         </TableCell>
-                        <TableCell>
+                        <TableCell style={{textAlign: 'right'}}>
                             <CurrencyFormat value={amortization.toFixed(2)} displayType={'text'}
                                             thousandSeparator={true}
                                             suffix="kr"/>
                         </TableCell>
+                        <TableCell/>
                     </TableRow>
                     <TableRow>
                         <TableCell>
                             Driftkostnader (el, vatten, hyra etc)
                         </TableCell>
-                        <TableCell>
+                        <TableCell style={{textAlign: 'right'}}>
                             <CurrencyFormat value={operationCosts.toFixed(2)} displayType={'text'}
                                             thousandSeparator={true}
                                             suffix="kr"/>
                         </TableCell>
+                        <TableCell/>
                     </TableRow>
                     <TableRow>
                         <TableCell style={{fontWeight: 'bold'}}>Totalt per månad</TableCell>
-                        <TableCell style={{fontWeight: 'bold'}}>
+                        <TableCell style={{fontWeight: 'bold', textAlign: 'right'}}>
                             <CurrencyFormat
                                 value={(replaceNanWithZero(operationCosts) + replaceNanWithZero(interestCost) + replaceNanWithZero(amortization)).toFixed(2)}
                                 displayType={'text'}
                                 thousandSeparator={true} suffix="kr"/>
                         </TableCell>
+                        <TableCell/>
                     </TableRow>
                 </TableBody>
             </Table>
